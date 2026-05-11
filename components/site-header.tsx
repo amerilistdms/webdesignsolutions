@@ -1,0 +1,25 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { MainNav } from "./main-nav";
+import { TopBar } from "./top-bar";
+
+export function SiteHeader() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <div className="print:hidden fixed inset-x-0 top-0 z-50">
+      <TopBar scrolled={scrolled} />
+      <MainNav scrolled={scrolled} />
+    </div>
+  );
+}

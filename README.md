@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Amerilist Web Design (sitio Next.js)
 
-## Getting Started
+Sitio corporativo en [Next.js](https://nextjs.org) 16 (App Router), TypeScript y Tailwind CSS.
 
-First, run the development server:
+**Repositorio:** [github.com/amerilistdms/webdesignsolutions](https://github.com/amerilistdms/webdesignsolutions)
+
+## Requisitos
+
+- Node.js 20+ (recomendado LTS)
+- npm (incluido con Node)
+
+## Desarrollo local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Comprobación antes de subir cambios
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+```
 
-## Learn More
+## Enlazar este proyecto con GitHub
 
-To learn more about Next.js, take a look at the following resources:
+Si la carpeta aún no tiene el remoto configurado:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+git remote add origin https://github.com/amerilistdms/webdesignsolutions.git
+git branch -M main
+git push -u origin main
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Si `origin` ya existe y apunta a otra URL:
 
-## Deploy on Vercel
+```bash
+git remote set-url origin https://github.com/amerilistdms/webdesignsolutions.git
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Qué no se sube a GitHub
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+En `.gitignore` ya están excluidos, entre otros: `node_modules/`, `.next/`, variables `.env*`, carpeta `.vercel/` y cachés. No hace falta borrarlos a mano; Git los ignora al hacer commit.
+
+## Despliegue en la web
+
+Cualquier plataforma con soporte Next.js (por ejemplo [Vercel](https://vercel.com)) puede usar el comando de build por defecto: `npm run build` y el directorio de salida que indique el proveedor (en Vercel suele detectarse solo).
