@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { TrustMarqueeSection } from "./trust-marquee-section";
 
 const services = [
   {
@@ -101,8 +100,6 @@ export function HomeSections() {
           </Link>
         </div>
       </section>
-
-      <TrustMarqueeSection />
 
       <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
         <h2 className="text-center text-3xl font-semibold tracking-tight text-[var(--foreground)] sm:text-4xl">

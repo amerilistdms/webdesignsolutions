@@ -398,7 +398,7 @@ function HeroSection() {
         }
       `}</style>
 
-      <div className="hero-root">
+      <section className="hero-root relative z-10 isolate">
         <div className="glow-orb glow-orb-1" />
         <div className="glow-orb glow-orb-2" />
 
@@ -537,7 +537,7 @@ function HeroSection() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }

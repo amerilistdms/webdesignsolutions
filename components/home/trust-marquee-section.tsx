@@ -1,8 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-"use client";
-
-import { useRef } from "react";
-import { useSectionParallaxLift } from "./use-section-parallax-lift";
 
 const MARQUEE_LOGOS = [
   "https://upload.wikimedia.org/wikipedia/commons/c/ca/Sony_logo.svg",
@@ -22,7 +18,6 @@ const LOGO_ALTS = [
   "Airbnb",
 ] as const;
 
-/** Repeat the 6-logo cycle this many times per half-strip so total width > viewport (no empty “gap” before the loop). */
 const CYCLES_PER_HALF = 6;
 
 function LogoRow({ duplicate }: { duplicate?: boolean }) {
@@ -58,48 +53,31 @@ function LogoRow({ duplicate }: { duplicate?: boolean }) {
 }
 
 export function TrustMarqueeSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { bg, fg } = useSectionParallaxLift(sectionRef, 0.055, 0.22);
-
   return (
-    <section
-      ref={sectionRef}
-      className="trust-section relative overflow-hidden border-y border-black/5 py-16 sm:py-20 lg:py-24"
-    >
-      <div
-        className="pointer-events-none absolute inset-0 z-0 bg-[var(--background)] will-change-transform"
-        style={{ transform: `translate3d(0, ${bg}px, 0)` }}
-        aria-hidden
-      />
+    <section className="trust-section relative z-10 border-y border-black/5 bg-[var(--background)] py-16 sm:py-20 lg:py-24">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <p className="text-center text-xs font-semibold uppercase tracking-[0.3em] text-[var(--foreground-muted)] sm:text-sm">
+          Trusted by teams who expect more than pretty pages
+        </p>
+      </div>
 
       <div
-        className="relative z-10 will-change-transform"
-        style={{ transform: `translate3d(0, ${fg}px, 0)` }}
+        className="logo-marquee relative mt-10 w-full overflow-hidden sm:mt-14"
+        role="region"
+        aria-label="Partner logos"
       >
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.3em] text-[var(--foreground-muted)] sm:text-sm">
-            Trusted by teams who expect more than pretty pages
-          </p>
-        </div>
-
         <div
-          className="logo-marquee relative mt-10 w-full overflow-hidden sm:mt-14"
-          role="region"
-          aria-label="Partner logos"
-        >
-          <div
-            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[var(--background)] to-transparent sm:w-28"
-            aria-hidden
-          />
-          <div
-            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[var(--background)] to-transparent sm:w-28"
-            aria-hidden
-          />
+          className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[var(--background)] to-transparent sm:w-28"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[var(--background)] to-transparent sm:w-28"
+          aria-hidden
+        />
 
-          <div className="trust-marquee-track">
-            <LogoRow />
-            <LogoRow duplicate />
-          </div>
+        <div className="trust-marquee-track">
+          <LogoRow />
+          <LogoRow duplicate />
         </div>
       </div>
     </section>
