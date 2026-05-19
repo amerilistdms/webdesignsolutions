@@ -1,0 +1,27 @@
+/* Loaded after globals.css — wins over Tailwind utilities for this strip */
+
+@keyframes trust-marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+div.trust-marquee-track {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+  width: max-content;
+  will-change: transform;
+  backface-visibility: hidden;
+  animation: trust-marquee-scroll 60s linear infinite !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  div.trust-marquee-track {
+    animation-duration: 240s !important;
+  }
+}

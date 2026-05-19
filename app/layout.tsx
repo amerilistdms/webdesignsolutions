@@ -3,6 +3,7 @@ import { Raleway } from "next/font/google";
 import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
 import "./globals.css";
+import "./trust-marquee.css";
 
 const raleway = Raleway({
   subsets: ["latin"],

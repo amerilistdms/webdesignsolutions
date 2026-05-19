@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seamless logo marquee (reference)</title>
+  <style>
+    /*
+      CONTEXT FOR CHATGPT / DEV:
+      - Site background token: --background: #f4f6fb (match your design system).
+      - Seamless infinite scroll: NEVER put 12 logos in ONE flex row with gap between all.
+        That adds an EXTRA gap between logo 6 and 7, so translateX(-50%) ≠ one full cycle → visible jump.
+      - Fix: TWO inner rows (.logo-track-group), each with the SAME 6 logos + internal gap.
+        Outer .logo-track has gap: 0 between groups, then animate translateX(-50%).
+      - Edge fades must use the SAME solid as the strip background (var(--background)), not #fff
+        if the page uses off-white, or you get a “different white” band.
+    */
+    :root {
+      --background: #f4f6fb;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: var(--background);
+    }
+
+    .trust-section {
+      overflow: hidden;
+      background-color: var(--background);
+      padding: 3rem 0;
+    }
+
+    .logo-marquee {
+      position: relative;
+      overflow: hidden;
+      margin: 2rem 0;
+    }
+
+    .logo-marquee::before,
+    .logo-marquee::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 140px;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .logo-marquee::before {
+      left: 0;
+      background: linear-gradient(to right, var(--background), transparent);
+    }
+
+    .logo-marquee::after {
+      right: 0;
+      background: linear-gradient(to left, var(--background), transparent);
+    }
+
+    .logo-track {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0;
+      width: max-content;
+      animation: scrollLogos 28s linear infinite;
+    }
+
+    .logo-track-group {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 54px;
+      flex: 0 0 auto;
+    }
+
+    .logo-pill {
+      width: 180px;
+      height: 70px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+    }
+
+    .logo-pill img {
+      max-width: 120px;
+      max-height: 42px;
+      object-fit: contain;
+      filter: grayscale(100%);
+      opacity: 0.38;
+      transition: opacity 0.25s ease, transform 0.25s ease, filter 0.25s ease;
+    }
+
+    .logo-pill:hover img {
+      opacity: 1;
+      filter: none;
+      transform: scale(1.05);
+    }
+
+    @keyframes scrollLogos {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @media (max-width: 640px) {
+      .logo-pill { width: 140px; height: 60px; }
+      .logo-track-group { gap: 38px; }
+      .logo-marquee::before,
+      .logo-marquee::after { width: 72px; }
+    }
+  </style>
+</head>
+<body>
+
+<section class="trust-section">
+  <div class="logo-marquee" aria-label="Partner logos">
+    <div class="logo-track">
+      <!-- Group A -->
+      <div class="logo-track-group">
+        <div class="logo-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Sony_logo.svg" alt="Sony"></div>
+        <div class="logo-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify"></div>
+        <div class="logo-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg" alt="BMW"></div>
+        <div class="logo-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google"></div>
+        <div class="logo-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon"></div>
+        <div class="logo-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg" alt="Airbnb"></div>
+      </div>
+      <!-- Group B (duplicate; hide from assistive tech) -->
+      <div class="logo-track-group" aria-hidden="true">
+        <div class="logo-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Sony_logo.svg" alt=""></div>
+        <div class="logo-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt=""></div>
+        <div class="logo-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg" alt=""></div>
+        <div class="logo-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt=""></div>
+        <div class="logo-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt=""></div>
+        <div class="logo-pill"><img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg" alt=""></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

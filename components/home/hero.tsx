@@ -1,30 +1,25 @@
+"use client";
+
 import Link from "next/link";
+import { useRef } from "react";
+import { HeroParallaxBg } from "./hero-parallax-bg";
 import { HeroTaglines } from "./hero-taglines";
+import { useSectionParallaxLift } from "./use-section-parallax-lift";
 
 export function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { bg, fg } = useSectionParallaxLift(sectionRef, 0.045, 0.2);
+
   return (
-    <section className="relative -mt-[var(--site-header-offset)] flex min-h-dvh w-full items-center overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative -mt-[var(--site-header-offset)] flex min-h-dvh w-full items-center overflow-hidden"
+    >
+      <HeroParallaxBg bgLift={bg} />
       <div
-        className="absolute inset-0 bg-[radial-gradient(circle_at_82%_10%,rgba(56,189,248,0.28),transparent_34%),radial-gradient(circle_at_70%_58%,rgba(59,130,246,0.2),transparent_42%),linear-gradient(118deg,#040c1c_0%,#0a1730_45%,#0f1b33_100%)]"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.24] [background-image:linear-gradient(rgba(148,163,184,0.16)_1px,transparent_1px),linear-gradient(to_right,rgba(148,163,184,0.16)_1px,transparent_1px)] [background-size:64px_64px]"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -right-28 top-1/4 h-[24rem] w-[24rem] rounded-full bg-cyan-400/18 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -left-20 bottom-[-6rem] h-[20rem] w-[20rem] rounded-full bg-blue-500/18 blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,rgba(2,6,23,0.24)_0%,rgba(2,6,23,0.72)_100%)]"
-        aria-hidden
-      />
-      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col justify-center px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+        className="relative z-10 mx-auto flex w-full max-w-6xl flex-col justify-center px-4 py-24 will-change-transform sm:px-6 lg:px-8 lg:py-32"
+        style={{ transform: `translate3d(0, ${fg}px, 0)` }}
+      >
         <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--color-accent)] sm:text-sm">
           Amerilist Web Design Solutions
         </p>

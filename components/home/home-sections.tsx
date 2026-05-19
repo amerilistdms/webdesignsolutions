@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TrustMarqueeSection } from "./trust-marquee-section";
 
 const services = [
   {
@@ -101,23 +102,7 @@ export function HomeSections() {
         </div>
       </section>
 
-      <section className="border-y border-black/5 bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.3em] text-[var(--foreground-muted)]">
-            Trusted by teams who expect more than pretty pages
-          </p>
-          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div
-                key={i}
-                className="flex h-14 items-center justify-center rounded-xl border border-dashed border-black/10 bg-[var(--background)] text-xs font-medium text-[var(--foreground-muted)]"
-              >
-                Client logo
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TrustMarqueeSection />
 
       <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
         <h2 className="text-center text-3xl font-semibold tracking-tight text-[var(--foreground)] sm:text-4xl">
