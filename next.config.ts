@@ -15,6 +15,16 @@ const nextConfig: NextConfig = {
         hostname: "upload.wikimedia.org",
         pathname: "/wikipedia/**",
       },
+      {
+        protocol: "https",
+        hostname: "www.amerilist.com",
+        pathname: "/files/**",
+      },
+      {
+        protocol: "https",
+        hostname: "amerilistwebdesign.com",
+        pathname: "/images/**",
+      },
     ],
   },
 };

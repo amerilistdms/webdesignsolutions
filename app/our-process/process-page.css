@@ -1,0 +1,30 @@
+@keyframes process-pulse-ring {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+.process-step-active .process-step-ring {
+  animation: process-pulse-ring 2.5s ease-in-out infinite;
+}
+
+.process-timeline-track {
+  background: linear-gradient(
+    180deg,
+    rgba(56, 189, 248, 0.5) 0%,
+    rgba(56, 189, 248, 0.15) 100%
+  );
+  transform-origin: top;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .process-step-active .process-step-ring {
+    animation: none;
+  }
+}

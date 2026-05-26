@@ -11,16 +11,13 @@ export function Hero() {
   const { bg, fg } = useSectionParallaxLift(sectionRef, 0.045, 0.2);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative -mt-[var(--site-header-offset)] flex min-h-dvh w-full items-center overflow-hidden"
-    >
+    <section ref={sectionRef} className="site-hero">
       <HeroParallaxBg bgLift={bg} />
       <div
-        className="relative z-10 mx-auto flex w-full max-w-6xl flex-col justify-center px-4 py-24 will-change-transform sm:px-6 lg:px-8 lg:py-32"
+        className="site-hero__content flex flex-col justify-center will-change-transform"
         style={{ transform: `translate3d(0, ${fg}px, 0)` }}
       >
-        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--color-accent)] sm:text-sm">
+        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-white sm:text-sm">
           Amerilist Web Design Solutions
         </p>
         <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">

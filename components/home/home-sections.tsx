@@ -59,6 +59,7 @@ const quotes = [
 export function HomeSections() {
   return (
     <>
+    <div className="section-light">
       <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
         <div className="max-w-3xl">
           <h2 className="text-3xl font-semibold tracking-tight text-[var(--foreground)] sm:text-4xl">
@@ -130,6 +131,7 @@ export function HomeSections() {
           ))}
         </div>
       </section>
+    </div>
 
       <section className="relative overflow-hidden bg-[var(--color-nav)] text-white">
         <div

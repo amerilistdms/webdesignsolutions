@@ -24,8 +24,8 @@ type SocialLinksProps = {
 export function SocialLinks({ variant }: SocialLinksProps) {
   const chip =
     variant === "header"
-      ? "border-white/20 bg-white/[0.07] text-white/90 hover:border-[var(--color-accent)]/55 hover:bg-white/12 hover:text-[var(--color-accent)]"
-      : "border-white/15 bg-white/[0.06] text-white/85 hover:border-[var(--color-accent)]/50 hover:bg-white/10 hover:text-[var(--color-accent)]";
+      ? "border-white/25 bg-white/[0.08] text-white hover:border-white/40 hover:bg-white/12 hover:text-white"
+      : "border-white/20 bg-white/[0.06] text-white hover:border-white/35 hover:bg-white/10 hover:text-white";
 
   return (
     <ul className="flex items-center gap-2">

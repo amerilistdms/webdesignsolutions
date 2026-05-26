@@ -23,7 +23,7 @@ function NavLinkDesktop({
     <Link
       href={href}
       className={`group relative px-3 py-2 text-sm font-medium transition-colors ${
-        active ? "text-white" : "text-white/85 hover:text-white"
+        active ? "text-white" : "text-white hover:text-white"
       }`}
     >
       {label}
@@ -155,7 +155,7 @@ export function MainNav({ scrolled }: MainNavProps) {
                   className={`group relative rounded-lg px-3 py-3 text-base font-medium transition-colors ${
                     active
                       ? "bg-white/10 text-white"
-                      : "text-white/90 hover:bg-white/5"
+                      : "text-white hover:bg-white/5"
                   }`}
                 >
                   <span

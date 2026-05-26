@@ -54,7 +54,7 @@ function LogoRow({ duplicate }: { duplicate?: boolean }) {
 
 export function TrustMarqueeSection() {
   return (
-    <section className="trust-section relative z-10 border-y border-black/5 bg-[var(--background)] py-16 sm:py-20 lg:py-24">
+    <section className="section-light trust-section relative z-10 border-y border-black/5 bg-[var(--background)] py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <p className="text-center text-xs font-semibold uppercase tracking-[0.3em] text-[var(--foreground-muted)] sm:text-sm">
           Trusted by teams who expect more than pretty pages

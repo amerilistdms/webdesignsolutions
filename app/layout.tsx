@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Raleway } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
 import "./globals.css";
 import "./trust-marquee.css";
 
-const raleway = Raleway({
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-raleway",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-jakarta",
   display: "swap",
 });
 
@@ -37,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${raleway.variable} h-full antialiased`}>
+    <html lang="en" className={`${plusJakarta.variable} h-full antialiased`}>
       <body suppressHydrationWarning className="flex min-h-full flex-col font-sans">
         <SiteHeader />
         <main className="flex-1 pt-[var(--site-header-offset)]">{children}</main>

@@ -1,0 +1,29 @@
+@keyframes services-hero-beam {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translateX(-50%) scaleX(0.85);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translateX(-50%) scaleX(1);
+  }
+}
+
+.services-hero-beam {
+  animation: services-hero-beam 4s ease-in-out infinite;
+}
+
+@keyframes service-card-glow {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.service-card-glow {
+  animation: service-card-glow 3s ease-in-out infinite;
+}

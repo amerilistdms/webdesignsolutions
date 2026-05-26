@@ -1,0 +1,26 @@
+---
+description: AmeriList design system — typography, colors, components for this site
+alwaysApply: true
+---
+
+# AmeriList design system
+
+Follow `design-system/AMERILIST-DESIGN-SYSTEM.md` when styling this Next.js site.
+
+## Typography
+- **Plus Jakarta Sans** (400–800), not Raleway unless user asks otherwise
+- Body: 15px / 1.65, color `#7d8087`
+- Hero H1: weight 800, letter-spacing -1.5px; accent `#81e92f` (lime)
+
+## Colors
+- Primary `#074eb9`, bright `#0070ab`
+- Navy hero `#252840`, footer `#1e2033`
+- Surface/header `#eff2f9`
+- CTA gradient: `linear-gradient(90deg, #0070ab 0%, #e31937 100%)`
+
+## Components
+- Gradient pill primary CTA, white secondary, sticky header on surface
+- Max content width ~1120px
+- Map tokens into Tailwind/CSS variables in `app/globals.css`
+
+Do not invent a new palette unless the user explicitly asks to diverge.

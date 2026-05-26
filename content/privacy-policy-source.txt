@@ -1,0 +1,348 @@
+At AmeriList, Inc., We take consumer privacy seriously. In compliance with all laws, regulations, and best practices, we have implemented comprehensive and secure data handling policies that ensure privacy, security, and transparency in the way we handle data.
+
+Privacy Policy - Notice of Compliance
+As a registered list broker and marketing services provider, AmeriList adheres to strict standards for data collection, processing, and distribution. We do not publicly post or share sensitive personal information, and we maintain procedures to ensure compliance with consumer rights to access, opt out, correct, or delete personal data as required under applicable law.
+
+Our compliance practices include:
+
+Annual registration and disclosure with state list broker registries where required.
+Adherence to opt-out and “Do Not Sell or Share” provisions under U.S. privacy laws.
+Implementation of technical and organizational safeguards to protect consumer data.
+Regular data hygiene processes including NCOA, CASS certification, and suppression of opt-outs.
+Clear procedures for handling consumer requests, data subject inquiries, and removal requests
+Compliance with all federal regulations governing commercial email (CAN-SPAM) and data use transparency.
+
+AmeriList, Inc. is committed to full compliance with all applicable federal and state privacy, data protection, and list broker laws. We adhere to the requirements of the California Consumer Privacy Act (CCPA/CPRA) and comparable laws in Colorado, Connecticut, Delaware, Indiana, Iowa, Maryland, Minnesota, Montana, Nebraska, New Hampshire, New Jersey, Oregon, Tennessee, Texas, Utah, Vermont, and Virginia, including all related consumer rights provisions and list broker registration obligations. AmeriList also complies with applicable federal regulations such as the CAN-SPAM Act, Telephone Consumer Protection Act (TCPA), Fair Credit Reporting Act (FCRA), Gramm-Leach-Bliley Act (GLBA), and other privacy and data security statutes. Our policies and practices are continuously reviewed to ensure ongoing adherence to evolving privacy standards and to uphold our commitment to lawful, transparent, and responsible data management.
+
+Here’s how we collect and use information from you in our efforts to provide the highest quality user experience:
+
+IP Address
+Your IP or “Internet Protocol” address and other site usage data is used to gather broad demographic information. This data helps us serve you by allowing us to understand how visitors use our web sites.
+
+Cookies
+We use cookies and similar technologies to improve website functionality, analyze site usage, and enhance your browsing experience. Cookies may collect information such as your IP address, browser type, device information, pages visited, and interaction patterns. This data helps us deliver a more personalized experience but does not directly identify you by name. You can manage your cookie preferences through your browser settings.
+
+Registration
+Some of our pages include registration forms that require users to give us contact information (like your name) and unique identifiers (such as your email address). Customer contact information is not shared with any other company or organization, but used internally so that, when possible, you can enjoy member benefits without having to register more than once. We use customer contact information from registration forms to send you information related to our products and services if you consent to receiving such mailings. Your contact information may also be used to contact you when necessary for administrative purposes related to your account. We use your email as a unique identifier in our record system, to verify communications from you, and to send you newsletters and promotion offers that you ask to receive.
+
+Submission Forms
+Our website uses forms for you to request information, products, and services. We collect financial information to bill you for the products and services you indicated. See “Your Security” below for more on how we safeguard your business and financial information.
+
+Your Security
+AmeriList has taken the following important measures to protect against the loss, misuse or alteration of your personal or business information. We store no financial information on our site. When we do transmit your data, we use only Secure Servers using current encryption technology to encode your data safely. The personal data we store on our system is protected by firewalls and passwords
+
+Outside Links
+While on AmeriList.com, you may be led to other web sites. Be aware that other sites may collect data and personal information and operate according to their own privacy practices. Please remember that, once outside AmeriList.com, any information you submit is outside of our control.
+
+Disclosure
+To provide you with the best products and services, we sometimes team with business partners. When you indicate that you want to receive a product or service, or contact a person or organization, we share the data needed for you to receive what you have indicated. Your personal information may be shared with an outside company for the sole purpose of administering the products and services you have selected.
+
+Privacy and Data Protection Policy
+At AmeriList, Inc., we are deeply committed to the highest standards of compliance with all applicable privacy laws and regulations. Protecting the privacy and security of personal information is a responsibility we take very seriously.
+
+How We Process Privacy Requests
+Upon receiving your privacy request, AmeriList initiates an internal review to identify and process any applicable records within our systems and databases. Our compliance team will coordinate with the appropriate internal departments to ensure your request is handled accurately and in accordance with privacy regulations.A formal response will be provided within 45 days of receipt. If additional time is required, you will be notified along with the reason for the delay.
+
+Choice/Opt-out
+To submit a data removal or privacy-related request, individuals are required to complete AmeriList’sData Privacy Request Form, available at data privacy rights request. Submission through this form is mandatory, as it enables AmeriList to collect the information necessary to verify the identity of the requester and to process the request in a secure and compliant manner.
+
+AmeriList does not accept privacy or opt-out requests submitted via email or other communication channels. All such requests must be submitted exclusively through the form referenced above to ensure proper processing and removal from applicable databases.
+
+Contacting Us
+If at any time you feel AmeriList has not adhered to this policy, email us at privacy.compliance@amerilist.com and we’ll do our best to determine any problem and quickly respond.
+
+California Residents (CCPA):
+Under the California Consumer Privacy Act (2018; effective January 1, 2020), known as the “CCPA”, amended in 2020, California residents have certain rights regarding their personal information. The CCPA is a bill intended to enhance privacy rights and consumer protection for residents of California. Without being discriminated against for exercising these rights, California residents have the right to request that we divulge what personal data we collect from you, to eliminate that information, and to opt-out of the selling of your information, subject to certain restrictions. You also have the right to designate an agent to exercise these rights on your behalf. The security of your information is our top priority.
+
+The intentions of the Act are to provide CA residents with certain rights regarding their personal information. This includes:
+The categories of personal information we’ve collected, and the categories of sources from which we got the information.
+The business purposes for which we’ve shared their personal information.
+The categories of third parties with whom we’ve shared their personal information.
+Access to the specific pieces of personal information we’ve collected and to request deletion of that personal information, subject to certain exceptions.
+The right to opt out of the sale of their personal information.
+The right not to be discriminated against for exercising their CCPA privacy rights.
+The right to correct inaccurate personal information.
+“Sensitive” Data is defined under California state law as:
+Social security, driver’s license, state identification card, or passport numbers
+An account login, financial account, debit card, or credit card number in combination with any required security codes
+Precise geolocation
+Racial and ethnic origins, religious or philosophical beliefs, and union memberships
+Contents of mail, email, and text messages to unintended recipients
+Genetic data
+Biometric information if used to uniquely identify a person
+Personal health information
+Personal information related to a person’s personal life or sexual orientation
+Colorado Resident Privacy Rights
+Under Colorado’s Consumer Privacy Act (effective as of July 1, 2023), Colorado residents have certain rights regarding their personal information. This includes:
+
+Access to the specific pieces of personal information we’ve collected, and to request deletion of that personal information
+The right to opt out of the sale of their personal information
+The right to opt out of targeted advertising
+The right to request correction of inaccurate personal information and to request limit disclosure or use of your sensitive personal information.
+“Sensitive” Data is defined under Colorado state law as:
+Racial or ethnic origin
+Religious beliefs
+Sexual orientation
+Citizenship or immigration status
+Biometric or genetic data
+Information regarding an individual’s medical history, mental or physical health condition, medical treatment, or diagnosis
+Personal data from a known child
+Connecticut Resident Privacy Rights
+Under Connecticut’s Data Privacy Act (effective as of July 1, 2023), Connecticut residents have certain rights regarding their personal information. This includes:
+
+Access the specific pieces of their personal information we’ve collected, and request deletion of that personal information
+The right to opt out of the sale of their personal information
+The right to opt out of targeted advertising
+The right to request correction of inaccurate personal information and to request limit disclosure or use of your sensitive personal information.
+“Sensitive” Data is defined under Connecticut state law as:
+Racial or ethnic origin
+Religious beliefs
+Sexual orientation
+Citizenship or immigration status
+Biometric or genetic data
+Information regarding an individual’s medical history, mental or physical health condition, medical treatment, or diagnosis
+Personal data from a known child
+Precise geolocation at a radius of 1,750 feet or less
+Delaware Personal Data Privacy Act
+The Delaware Personal Data Privacy Act (effective January 1, 2025) is a state-level legislative measure aimed at protecting the personal data of Delaware residents. It sets forth various requirements and obligations for businesses that handle personal data. Here are some key aspects of the DPDPA:
+
+Scope and Applicability:
+The Act applies to businesses operating in Delaware or targeting Delaware residents, handling a specified amount of personal data.
+It covers businesses that control or process the personal data of 10,000 or more consumers annually or derive more than 50% of their gross revenue from the sale of personal data.
+Consumer Rights:
+Right to Access: Consumers can request access to their personal data held by a business.
+Right to Correction: Consumers can request corrections to inaccurate personal data.
+Right to Deletion: Consumers can request the deletion of their personal data.
+Right to Data Portability: Consumers can request a copy of their personal data in a portable format.
+Right to Opt-Out: Consumers can opt out of the sale of their personal data, targeted advertising, and profiling.
+Indiana Consumer Data Protection Act
+The Indiana Consumer Data Protection Act (effective January 1, 2026) is a state-level legislative measure designed to protect the personal data of Indiana residents. It outlines various rights for consumers and imposes specific obligations on businesses that collect, process, or sell personal data. Here are some key aspects of the ICDPA:
+
+Scope and Applicability:
+The ICDPA applies to entities conducting business in Indiana or targeting Indiana residents.
+It primarily affects businesses that process personal data of 100,000 or more consumers annually or derive over 50% of their gross revenue from the sale of personal data.
+Consumer Rights:
+Right to Access: Consumers can request access to their personal data held by a business.
+Right to Correction: Consumers can request corrections to inaccurate personal data.
+Right to Deletion: Consumers can request the deletion of their personal data.
+Right to Data Portability: Consumers can request a copy of their personal data in a portable format.
+Right to Opt-Out: Consumers can opt out of the sale of their personal data, targeted advertising, and profiling.
+Iowa Consumer Data Protection Act
+The Iowa Consumer Data Protection Act (effective January 1, 2025) is a legislative measure designed to protect the personal data of Iowa residents. Similar to data protection laws in other states, the ICDPA grants specific rights to consumers and imposes various obligations on businesses that handle personal data. Here are the key aspects of the ICDPA:
+
+Scope and Applicability:
+The ICDPA applies to entities conducting business in Iowa or targeting Iowa residents.
+It primarily affects businesses that control or process personal data of 100,000 or more consumers annually, or control or process personal data of 25,000 or more consumers and derive over 50% of their gross revenue from the sale of personal data.
+Consumer Rights:
+Right to Access: Consumers can request access to their personal data held by a business.
+Right to Correction: Consumers can request corrections to inaccurate personal data.
+Right to Deletion: Consumers can request the deletion of their personal data.
+Right to Data Portability: Consumers can request a copy of their personal data in a portable format.
+Right to Opt-Out: Consumers can opt out of the sale of their personal data, targeted advertising, and profiling.
+Kentucky Consumer Data Protection Act
+The Kentucky Consumer Data Protection Act (KCDPA) is a proposed state-level legislative measure aimed at protecting the personal data of Kentucky residents. These acts are designed to provide consumers with specific rights regarding their personal data and impose various obligations on businesses that collect, process, or sell personal data. Here are the key aspects of the KCDPA:
+
+Scope and Applicability:
+The KCDPA applies to entities conducting business in Kentucky or targeting Kentucky residents.
+It primarily affects businesses that control or process personal data of 25,000 or more consumers annually or derive over 50% of their gross revenue from the sale of personal data.
+Consumer Rights:
+Right to Access: Consumers can request access to their personal data held by a business.
+Right to Correction: Consumers can request corrections to inaccurate personal data.
+Right to Deletion: Consumers can request the deletion of their personal data.
+Right to Data Portability: Consumers can request a copy of their personal data in a portable format.
+Right to Opt-Out: Consumers can opt out of the sale of their personal data, targeted advertising, and profiling.
+Montana Consumer Data Protection Act
+The Montana Consumer Data Protection Act (effective October 1, 2024) is a legislative measure enacted to protect the personal data of Montana residents. It establishes specific rights for consumers and sets forth various obligations for businesses that handle personal data. Here are the key aspects of the MCDPA:
+
+Scope and Applicability:
+The MCDPA applies to entities conducting business in Montana or targeting Montana residents.
+It affects businesses that control or process the personal data of 50,000 or more consumers, households, or devices annually or derive more than 25% of their gross revenue from the sale of personal data.
+Consumer Rights:
+Right to Access: Consumers can request access to their personal data held by a business.
+Right to Correction: Consumers can request corrections to inaccurate personal data.
+Right to Deletion: Consumers can request the deletion of their personal data.
+Right to Data Portability: Consumers can request a copy of their personal data in a portable format.
+Right to Opt-Out: Consumers can opt out of the sale of their personal data, targeted advertising, and profiling.
+Nebraska Data Privacy Act
+The Nebraska Data Privacy Act (effective January 1, 2025) is a state-level legislative measure designed to protect the personal data of Nebraska residents. This Act grants specific rights to consumers and imposes various obligations on businesses that handle personal data. While the precise details can vary based on amendments and interpretations, here are the key aspects generally covered by such data privacy acts:
+
+Scope and Applicability:
+The NDPA applies to entities conducting business in Nebraska or targeting Nebraska residents.
+It affects businesses that control or process personal data of a significant number of consumers, typically 50,000 or more annually, or derive a substantial portion of their revenue from the sale of personal data.
+Consumer Rights:
+Right to Access: Consumers can request access to their personal data held by a business.
+Right to Correction: Consumers can request corrections to inaccurate personal data.
+Right to Deletion: Consumers can request the deletion of their personal data.
+Right to Data Portability: Consumers can request a copy of their personal data in a portable format.
+Right to Opt-Out: Consumers can opt out of the sale of their personal data, targeted advertising, and profiling.
+New Hampshire Data Privacy and Security Act
+New Hampshire’s Senate Bill 255, also known as the New Hampshire Data Privacy and Security Act, (effective January 1, 2025) represents a significant step towards comprehensive data privacy legislation in the state. The bill aims to enhance the protection of personal data for New Hampshire residents by establishing clear rights for consumers and responsibilities for businesses. Here are the key aspects of Senate Bill 255:
+
+Scope and Applicability:
+The bill applies to businesses that conduct business in New Hampshire or target New Hampshire residents.
+It specifically affects businesses that control or process the personal data of at least 50,000 consumers, households, or devices annually or derive more than 50% of their gross revenue from the sale of personal data.
+Consumer Rights:
+Right to Access: Consumers can request access to their personal data held by a business.
+Right to Correction: Consumers can request corrections to inaccurate personal data.
+Right to Deletion: Consumers can request the deletion of their personal data.
+Right to Data Portability: Consumers can request a copy of their personal data in a portable format.
+Right to Opt-Out: Consumers can opt out of the sale of their personal data, targeted advertising, and profiling.
+Oregon Consumer Privacy Act
+The Oregon Consumer Privacy Act (effective July 1, 2024) empowers Oregon residents with control over their personal data collected by certain businesses. Here’s a breakdown of the key provisions:
+
+Right to Access: Consumers can confirm whether a business is processing their personal data and request details about the categories of data collected, the purpose of processing, and any third-party disclosures.
+Right to Correction: Consumers have the right to request correction of inaccurate personal data held by a business.
+Right to Deletion: Consumers can request deletion of their personal data, including data they provided directly, data obtained from other sources, and derived data.
+Right to Data Portability: Consumers can obtain a copy of their personal data in a transferable format that allows them to easily move it to another business.
+Right to Opt-Out: Consumers can opt out of the sale of their personal data and targeted advertising. Additionally, they have the right to opt in for the processing of “sensitive data” such as social security numbers, passport numbers, or data revealing race, religion, or sexual orientation.
+Tennessee Information Protection Act (TIPA)
+The Tennessee Information Protection Act (effective July 1, 2025) grants Tennessee residents' control over their personal data and places obligations on businesses that handle it. Here’s a comprehensive look at TIPA’s key provisions:
+
+Consumer Rights under TIPA:
+
+Access, Correction, and Deletion: Consumers have the right to:
+Confirm whether a business is processing their personal information.
+Access a copy of their personal information.
+Request correction of any inaccuracies in their data.
+Request deletion of their personal information, subject to certain exceptions.
+Data Portability: Consumers can obtain their personal information in a usable and portable format to transfer it to another business.
+Opt-Out Rights: Consumers have the right to opt out of:
+The sale of their personal information.
+Targeted advertising based on their personal information.
+Profiling that results in automated decisions that have a significant impact on them.
+New Jersey Data Protection Act
+The New Jersey Data Protection Act (effective on January 15, 2025) grants New Jersey residents' control over their personal data and imposes obligations on businesses that collect and process it. Here’s a breakdown of the key provisions:
+
+Consumer Rights under the NJDPA:
+
+Right to Know: Consumers can confirm whether a business is processing their personal data and accessing details about the categories of data collected, the purpose of processing, and any third-party disclosures.
+Right to Correction: Consumers have the right to request correction of inaccurate personal data held by a business.
+Right to Deletion: Consumers can request deletion of their personal data, with some exceptions for businesses with legal obligations to retain data.
+Right to Portability: Consumers can obtain a copy of their personal data in a transferable format that allows them to move it to another business.
+Right to Opt-Out: Consumers can opt out of the processing of their personal data for:
+Targeted advertising.
+Sale of personal data (except for consumers under 18, where opt-in is required).
+Profiling in furtherance of automated decisions that produce legal or similar effects concerning them.
+Virginia Resident Privacy Rights
+Under Virginia’s Consumer Data Protection Act (effective as of January 1, 2023), Virginia residents have certain rights regarding their personal information. This includes:
+
+Access the specific pieces of their personal information we’ve collected, and request deletion of that personal information
+The right to opt out of the sale of their personal information.
+The right to opt out of targeted advertising.
+The right to request correction of inaccurate personal information and to request to limit disclosure or use of your sensitive personal information.
+“Sensitive” Data is defined under Virginia state law as:
+Racial or ethnic origin
+Religious beliefs
+Sexual orientation
+Citizenship or immigration status
+Biometric or genetic data
+Information regarding an individual’s medical history, mental or physical health condition, medical treatment, or diagnosis
+Personal data from a known child
+Precise geolocation at a radius of 1,750 feet or less
+Utah Resident Privacy Rights
+Under Utah’s Consumer Privacy Act (effective as of December 31, 2023), Utah residents have certain rights regarding their personal information. This includes:
+
+Access the specific pieces of their personal information we’ve collected, and request deletion of that personal information
+The right to opt out of the sale of their personal information.
+The right to opt out of targeted advertising.
+The right to request correction of inaccurate personal information and to request to limit disclosure or use of your sensitive personal information.
+“Sensitive” Data is defined under Utah state law as:
+Racial or ethnic origin
+Religious beliefs
+Sexual orientation
+Citizenship or immigration status
+Biometric or genetic data
+Information regarding an individual’s medical history, mental or physical health condition, medical treatment, or diagnosis
+Personal data from a known child
+Precise geolocation at a radius of 1,750 feet or less
+Texas Resident Privacy Rights
+Texas is the latest state to pass new resident privacy protection laws. Known as the Texas Data Privacy and Security Act (effective March 1, 2024), Texas residents will have certain rights regarding their personal information. This includes:
+
+Access the specific pieces of their personal information we’ve collected, and request deletion of that personal information
+Confirm that the data controller is processing their data.
+Correct inaccuracies in their personal data.
+Delete their personal data.
+Obtain a copy of their data in a portable and readily usable format.
+Opt out of having their data processed for the purpose of targeted advertising, the sale of their data, or profiling that produces a legal or significant effect on the consumer.
+“Sensitive” Data is defined under Utah state law as:
+Racial or ethnic origin
+Religious beliefs
+Sexual orientation
+Mental or physical health diagnosis
+Citizenship or immigration status
+Genetic or biometric data
+7 Children’s data
+Precise geolocation data
+Vermont list broker Act
+The Accelerating to list brokers and Consumer Protection Act went into full effect on January 1, 2019. The list broker Act imposes specific registration, disclosure, and security requirements on list brokers. Additionally, the list broker Act prohibits any person or entity from fraudulently acquiring or using brokered personal information.
+
+The list broker Act defines the term’ list broker’ as any business or unit of businesses that knowingly collects and sells, or licenses to third parties, ‘brokered personal information’ of a consumer (i.e., a Vermont resident) with whom the business does not have a direct relationship. “Brokered personal information” includes any of the following data elements about a consumer, if categorized or organized for dissemination to third parties:
+
+Name
+Address
+Date or place of birth
+Mother’s maiden name
+Unique biometric data that can identify or authenticate a consumer (e.g., fingerprint, retina, or iris image)
+Name or address of a member of the consumer’s immediate family or household
+Social security number or other government-issued identification number, or
+Any other information that, alone or in combination with the other information sold or licensed, would allow a reasonable person to identify the consumer with reasonable certainty
+Right to Knowledge of Personal Information Collected, Distributed or Sold
+You have the right to request that AmeriList, Inc. disclose specific details regarding the collection, use, disclosure, or sale of your personal information within the preceding twelve (12) months. Upon receipt and verification of a verifiable consumer request, AmeriList will provide the following information, as applicable:
+
+Categories of Personal Information Collected: This may include, but is not limited to, identifiers; demographic characteristics; commercial or transactional information; geographic data; internet or electronic network activity; employment-related information; and consumer interests or preferences.
+Sources of Personal Information: These may include data compilers, public records, surveys or questionnaires, third-party list brokers, and other authorized data providers.
+Business or Commercial Purpose for Collection or Sale: Such purposes may include providing data marketing and analytics services, audience targeting, measuring the effectiveness of marketing campaigns, and the development or enhancement of products and services.
+Categories of Third Parties with Whom Personal Information Has Been Shared or Sold: This may include business-to-business (B2B) or business-to-consumer (B2C) clients utilizing data to identify and engage with their target audiences.
+AmeriList does not compile or maintain proprietary databases of personal information. Rather, AmeriList operates as a List Broker that sources information from third-party compilers and facilitates access to such data for its clients without storing or retaining the data beyond the period necessary to fulfill the contracted purpose.
+
+Compliance with Daniel’s Law:
+In alignment with AmeriList, Inc.’s ongoing commitment to privacy and data protection, the Company strictly adheres to the provisions of Daniel’s Law (N.J. Stat. § 56:8-166.1 et seq.) and all related regulations. AmeriList does not knowingly engage in the sale, rental, disclosure, or brokerage of any personal information pertaining to individuals protected under Daniel’s Law, including active or retired law enforcement officers, judicial officers, prosecutors, and other covered persons.
+
+AmeriList takes all reasonable measures to identify and exclude records associated with individuals protected under Daniel’s Law and will honor all verified requests for removal from its databases and systems. The Company maintains internal compliance protocols to ensure continued adherence to the requirements of Daniel’s Law and other applicable privacy statutes.
+
+Definition of Covered Persons:
+For the purposes of this policy, "Covered Persons" refers to individuals who are currently serving, have served, or are retired from roles as judicial officers, prosecutors, law enforcement officers, and other positions protected under Daniel’s Law. This protection also extends to immediate family members of such individuals, provided they reside in the same household.
+
+Enforcement and Compliance:
+AmeriList, Inc. implements rigorous measures to ensure the integrity of our data handling processes, with specific protocols in place to identify and protect the information of Covered Persons. Our employees receive thorough training on these measures, ensuring that the principles outlined in this policy are integrated into our daily operations.
+
+We are committed to continuously reviewing and updating our practices to remain in strict compliance with Daniel’s Law and other privacy regulations. This commitment underlines our dedication to safeguarding the personal information of all individuals, reflecting our core values of respect, integrity, and privacy.
+
+For any inquiries or concerns regarding our Privacy and Data Protection Policy, please contact our Data Protection Dept at privacy.compliance@amerilist.com
+
+Deletion Requests
+You have the right to request that AmeriList erase any of your personal data that we have collected from you, subject to certain exceptions. Once we obtain your request via https://www.amerilist.com/data-privacy-rights-request, we will delete your personal information from our records.
+
+Please submit a request to us by either:
+Visiting https://www.amerilist.com/data-privacy-rights-request
+Sending mail to:AmeriList, Inc
+Attn: Privacy – Compliance
+10 Esquire Rd Ste 11B
+New City NY 10956
+The mailed request should include your contact information and describe your request with sufficient detail that allows us to properly understand, evaluate, and respond to it. In addition, you should provide sufficient information that allows us to reasonably verify that you are the person about whom we collected the personal information or an authorized representative.
+
+Appeals Process
+If we deny your privacy request, you have the right to appeal to our decision. To submit an appeal, please contact us at privacy.compliance@amerilist.com within 45 days of receiving our response. Please include your original request, the reason you believe our decision was in error, and any additional supporting information.
+
+We will review your appeal and provide a written response within 45 days of receipt, explaining the outcome and the reasons for our decision. If your appeal is denied, you may contact your state’s regulatory authority or your states Department of Justice or the applicable state attorney general’s office for further review.
+
+Consumer Advocacy
+AmeriList, Inc. maintains a Privacy Advocate responsible for addressing consumer inquiries and concerns relating to data privacy and the protection of personal information. The Privacy Advocate shall review each inquiry in good faith and take appropriate measures to investigate and resolve potential compliance issues in accordance with applicable data protection laws and internal policy standards.For all privacy-related inquiries, please contact us via email at privacy.compliance@amerilist.com.
+
+Internal Monitoring
+Our Privacy Advocate also ensures that all aspects of our privacy policy are upheld and that all employees receive the appropriate training and resources to ensure privacy compliance.
+
+Policy Changes
+AmeriList, Inc. may update this policy from time to time. Any changes to this policy will be posted here along with an updated revision date.
+
+Contacting Us
+If at any time you feel AmeriList has not adhered to this policy, email us at privacy.compliance@amerilist.com and we’ll do our best to determine any problem and quickly respond.
+
+Questions?
+For any questions related to our privacy policy, please email: privacy.compliance@amerilist.com
+You may also send correspondence to:
+AmeriList, Inc
+Attn: Privacy – Compliance
+10 Esquire Rd Ste 11B
+New City NY 10956
+This policy was last revised on 10/20/2025

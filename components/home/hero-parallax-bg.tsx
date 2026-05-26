@@ -1,7 +1,6 @@
 "use client";
 
 type HeroParallaxBgProps = {
-  /** Pixels — small coefficient already applied in hook; backdrop moves ~4× less than foreground. */
   bgLift: number;
 };
 

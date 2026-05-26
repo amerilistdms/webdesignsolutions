@@ -19,7 +19,7 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <div className="print:hidden fixed inset-x-0 top-0 z-50">
+    <div className="site-chrome print:hidden fixed inset-x-0 top-0 z-50 text-white">
       <TopBar scrolled={scrolled} />
       <MainNav key={pathname} scrolled={scrolled} />
     </div>

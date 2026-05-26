@@ -1,18 +1,17 @@
 "use client";
 
+import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
+import {
+  RevealUp,
+  revealContainer,
+  revealItem,
+  revealViewport,
+} from "./reveal-up";
 
-/* eslint-disable @typescript-eslint/no-unused-vars -- kept as in your source */
-const stats = [
-  { value: "2.5M+", label: "Targeted audiences analyzed" },
-  { value: "45%+", label: "Average increase in engagement" },
-];
-
-const statsRight = [
-  { value: "3.8x", label: "Stronger conversion rate", icon: "cursor" },
-  { value: "99%", label: "Websites built for speed & performance", icon: "bolt" },
-];
-/* eslint-enable @typescript-eslint/no-unused-vars */
+const PHONE_MOCKUP_SRC =
+  "https://www.amerilist.com/files/websolutionswebsite/phonemockup.png";
 
 const features = [
   {
@@ -31,42 +30,10 @@ const features = [
       <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
         <circle cx="12" cy="12" r="9" stroke="#38bdf8" strokeWidth="2" />
         <circle cx="12" cy="12" r="4" stroke="#38bdf8" strokeWidth="2" />
-        <line
-          x1="12"
-          y1="3"
-          x2="12"
-          y2="6"
-          stroke="#38bdf8"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-        <line
-          x1="12"
-          y1="18"
-          x2="12"
-          y2="21"
-          stroke="#38bdf8"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-        <line
-          x1="3"
-          y1="12"
-          x2="6"
-          y2="12"
-          stroke="#38bdf8"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-        <line
-          x1="18"
-          y1="12"
-          x2="21"
-          y2="12"
-          stroke="#38bdf8"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
+        <line x1="12" y1="3" x2="12" y2="6" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" />
+        <line x1="12" y1="18" x2="12" y2="21" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" />
+        <line x1="3" y1="12" x2="6" y2="12" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" />
+        <line x1="18" y1="12" x2="21" y2="12" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" />
       </svg>
     ),
     title: "Conversion-focused design",
@@ -75,22 +42,9 @@ const features = [
   {
     icon: (
       <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
-        <rect
-          x="2"
-          y="4"
-          width="20"
-          height="16"
-          rx="2"
-          stroke="#38bdf8"
-          strokeWidth="2"
-        />
+        <rect x="2" y="4" width="20" height="16" rx="2" stroke="#38bdf8" strokeWidth="2" />
         <path d="M2 8h20" stroke="#38bdf8" strokeWidth="2" />
-        <path
-          d="M6 12h4M6 16h8"
-          stroke="#38bdf8"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
+        <path d="M6 12h4M6 16h8" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" />
       </svg>
     ),
     title: "Marketing integration",
@@ -99,22 +53,8 @@ const features = [
   {
     icon: (
       <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
-        <polyline
-          points="3,17 9,11 13,15 21,7"
-          stroke="#38bdf8"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-        />
-        <polyline
-          points="17,7 21,7 21,11"
-          stroke="#38bdf8"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-        />
+        <polyline points="3,17 9,11 13,15 21,7" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        <polyline points="17,7 21,7 21,11" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
       </svg>
     ),
     title: "Built for growth",
@@ -126,417 +66,463 @@ function HeroSection() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
-
-        .hero-root {
-          font-family: 'Manrope', sans-serif;
-          background: #050d1a;
-          color: #fff;
+        .parallax-hero {
           position: relative;
-          /* visible so filter blur / orbs are not cut at section edges (was overflow:hidden) */
-          overflow: visible;
+          overflow: hidden;
+          background: #f8fafc;
+          color: var(--foreground);
         }
 
-        /* ── Starfield ── */
-        .hero-root::before {
-          content: '';
+        .parallax-bg {
+          position: absolute;
+          inset: -120px 0;
+          z-index: 0;
+          background:
+            radial-gradient(circle at 72% 18%, rgba(56, 189, 248, 0.24), transparent 44%),
+            radial-gradient(circle at 18% 72%, rgba(14, 116, 200, 0.16), transparent 40%),
+            radial-gradient(circle at 92% 68%, rgba(56, 189, 248, 0.12), transparent 34%),
+            linear-gradient(180deg, #ffffff 0%, #f1f5f9 45%, #ffffff 100%);
+        }
+
+        .parallax-dots {
+          position: absolute;
+          inset: 0;
+          background-image: radial-gradient(circle, rgba(14, 116, 200, 0.28) 1px, transparent 1px);
+          background-size: 26px 26px;
+          mask-image: radial-gradient(ellipse 90% 80% at 50% 45%, black 35%, transparent 82%);
+          opacity: 0.9;
+        }
+
+        .parallax-grid {
           position: absolute;
           inset: 0;
           background-image:
-            radial-gradient(1px 1px at 15% 25%, rgba(255,255,255,.55) 0%, transparent 100%),
-            radial-gradient(1px 1px at 42% 60%, rgba(255,255,255,.35) 0%, transparent 100%),
-            radial-gradient(1px 1px at 70% 18%, rgba(255,255,255,.45) 0%, transparent 100%),
-            radial-gradient(1px 1px at 88% 72%, rgba(255,255,255,.40) 0%, transparent 100%),
-            radial-gradient(1px 1px at 55% 85%, rgba(255,255,255,.30) 0%, transparent 100%),
-            radial-gradient(1px 1px at 27% 90%, rgba(255,255,255,.35) 0%, transparent 100%),
-            radial-gradient(1px 1px at 93% 40%, rgba(255,255,255,.50) 0%, transparent 100%),
-            radial-gradient(1px 1px at 6%  55%, rgba(255,255,255,.30) 0%, transparent 100%);
-          pointer-events: none;
-          z-index: 0;
+            linear-gradient(rgba(56, 189, 248, 0.14) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(56, 189, 248, 0.14) 1px, transparent 1px);
+          background-size: 64px 64px;
+          mask-image: linear-gradient(105deg, transparent 0%, black 18%, black 88%, transparent 100%);
+          opacity: 0.72;
         }
 
-        /* ── Glow orbs ── */
-        .glow-orb {
+        .parallax-orb {
           position: absolute;
           border-radius: 50%;
-          filter: blur(90px);
           pointer-events: none;
-          z-index: 0;
-        }
-        .glow-orb-1 {
-          width: 520px; height: 520px;
-          background: radial-gradient(circle, rgba(14,116,200,.28) 0%, transparent 70%);
-          top: 12px;
-          right: 18%;
-        }
-        .glow-orb-2 {
-          width: 340px; height: 340px;
-          background: radial-gradient(circle, rgba(14,116,200,.18) 0%, transparent 70%);
-          bottom: 60px; right: 8%;
         }
 
-        /* ── Hero content ── */
-        .hero-body {
+        .parallax-orb-a {
+          width: 420px;
+          height: 420px;
+          top: -80px;
+          right: 8%;
+          background: radial-gradient(circle, rgba(56, 189, 248, 0.22) 0%, transparent 68%);
+          border: 1px solid rgba(56, 189, 248, 0.18);
+        }
+
+        .parallax-orb-b {
+          width: 280px;
+          height: 280px;
+          bottom: 10%;
+          left: -40px;
+          background: radial-gradient(circle, rgba(14, 116, 200, 0.18) 0%, transparent 70%);
+        }
+
+        .parallax-ring {
+          position: absolute;
+          width: 520px;
+          height: 520px;
+          top: 12%;
+          right: -120px;
+          border-radius: 50%;
+          border: 1px solid rgba(56, 189, 248, 0.22);
+          opacity: 0.92;
+        }
+
+        .parallax-ring::after {
+          content: "";
+          position: absolute;
+          inset: 48px;
+          border-radius: 50%;
+          border: 1px dashed rgba(14, 116, 200, 0.18);
+        }
+
+        .parallax-body {
           position: relative;
-          z-index: 5;
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 40px;
-          padding: 72px 48px 64px;
-          align-items: center;
+          z-index: 2;
           max-width: 1320px;
           margin: 0 auto;
+          padding: 92px 48px 84px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 56px;
+          align-items: center;
         }
 
-        /* Left column */
-        .hero-left {}
-        .eyebrow {
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: .18em;
-          text-transform: uppercase;
-          color: #38bdf8;
-          margin-bottom: 20px;
-        }
-        .hero-heading {
-          font-size: clamp(36px, 4.2vw, 58px);
-          font-weight: 800;
-          line-height: 1.08;
-          letter-spacing: -.025em;
-          margin-bottom: 22px;
-          color: #fff;
-        }
-        .hero-heading .accent { color: #38bdf8; }
-        .hero-sub {
-          font-size: 15px;
-          line-height: 1.7;
-          color: rgba(255,255,255,.55);
-          max-width: 420px;
-          margin-bottom: 44px;
-        }
-
-        /* Feature grid */
         .feature-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 14px;
-          margin-bottom: 36px;
-        }
-        .feature-card {
-          background: rgba(255,255,255,.035);
-          border: 1px solid rgba(255,255,255,.07);
-          border-radius: 12px;
-          padding: 22px 20px 20px;
-          transition: border-color .25s, background .25s;
-        }
-        .feature-card:hover {
-          border-color: rgba(56,189,248,.35);
-          background: rgba(56,189,248,.04);
-        }
-        .feature-icon {
-          width: 40px; height: 40px;
-          background: rgba(56,189,248,.1);
-          border-radius: 10px;
-          display: flex; align-items: center; justify-content: center;
-          margin-bottom: 14px;
-        }
-        .feature-title {
-          font-size: 14px;
-          font-weight: 700;
-          color: #fff;
-          margin-bottom: 8px;
-        }
-        .feature-desc {
-          font-size: 12.5px;
-          line-height: 1.6;
-          color: rgba(255,255,255,.45);
+          margin-bottom: 34px;
         }
 
-        .explore-link {
-          display: inline-flex; align-items: center; gap: 8px;
-          color: #38bdf8;
-          font-size: 14px;
-          font-weight: 600;
-          text-decoration: none;
-          transition: gap .2s;
+        /* Realistic glass — shared by feature + stat cards */
+        .feature-card,
+        .stat-card {
+          overflow: hidden;
+          border: none;
+          border-radius: 18px;
+          background: rgba(255, 255, 255, 0.06);
+          backdrop-filter: blur(42px) saturate(185%) contrast(1.04);
+          -webkit-backdrop-filter: blur(42px) saturate(185%) contrast(1.04);
+          box-shadow:
+            0 10px 40px rgba(14, 116, 200, 0.07),
+            0 2px 8px rgba(15, 23, 42, 0.04),
+            inset 0 1px 1px rgba(255, 255, 255, 0.72),
+            inset 0 -1px 1px rgba(255, 255, 255, 0.12);
+          transition: box-shadow 0.3s, transform 0.3s;
         }
-        .explore-link:hover { gap: 12px; }
-        .explore-link svg { transition: transform .2s; }
-        .explore-link:hover svg { transform: translateX(3px); }
 
-        /* Right column – mockup area */
-        .hero-right {
+        .feature-card::before,
+        .stat-card::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          padding: 1px;
+          background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(255, 255, 255, 0.25) 28%,
+            rgba(255, 255, 255, 0.04) 52%,
+            rgba(186, 230, 253, 0.45) 100%
+          );
+          -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+          mask-composite: exclude;
+          pointer-events: none;
+          z-index: 1;
+        }
+
+        .feature-card::after,
+        .stat-card::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          background: linear-gradient(
+            165deg,
+            rgba(255, 255, 255, 0.55) 0%,
+            rgba(255, 255, 255, 0.12) 28%,
+            transparent 52%
+          );
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        .feature-card > *,
+        .stat-card > * {
           position: relative;
+          z-index: 2;
+        }
+
+        .feature-card {
+          position: relative;
+          padding: 20px;
+        }
+
+        .feature-card:hover {
+          background: rgba(255, 255, 255, 0.1);
+          box-shadow:
+            0 18px 48px rgba(14, 116, 200, 0.12),
+            0 4px 12px rgba(15, 23, 42, 0.05),
+            inset 0 1px 1px rgba(255, 255, 255, 0.85),
+            inset 0 -1px 1px rgba(255, 255, 255, 0.18);
+          transform: translateY(-3px);
+        }
+
+        .feature-icon {
+          width: 40px;
+          height: 40px;
+          border-radius: 11px;
+          background: rgba(255, 255, 255, 0.12);
+          border: 1px solid rgba(255, 255, 255, 0.4);
+          backdrop-filter: blur(12px) saturate(160%);
+          -webkit-backdrop-filter: blur(12px) saturate(160%);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+          margin-bottom: 14px;
           display: flex;
           align-items: center;
           justify-content: center;
-          min-height: 560px;
-          overflow: visible;
         }
 
-        /* Ellipse glow behind phone — short vertical reach + low center so blur stays off top clip */
+        .hero-visual {
+          position: relative;
+          min-height: 560px;
+          display: grid;
+          place-items: center;
+        }
+
         .phone-glow {
           position: absolute;
-          width: 540px;
-          height: 200px;
+          width: 560px;
+          height: 240px;
+          bottom: 28px;
           left: 50%;
-          bottom: 12px;
-          transform: translate(-50%, 0);
-          background: radial-gradient(
-            ellipse 88% 62% at 50% 96%,
-            rgba(14, 116, 200, 0.48) 0%,
-            rgba(14, 116, 200, 0.14) 38%,
-            transparent 70%
-          );
-          filter: blur(36px);
+          transform: translateX(-50%);
+          background: radial-gradient(ellipse, rgba(56, 189, 248, 0.22), transparent 68%);
+          filter: blur(42px);
           z-index: 0;
           pointer-events: none;
         }
 
-        /* Floating stat cards */
-        .stat-card {
-          position: absolute;
-          background: rgba(8,20,40,.85);
-          border: 1px solid rgba(255,255,255,.1);
-          border-radius: 14px;
-          padding: 16px 20px;
-          backdrop-filter: blur(12px);
-          min-width: 160px;
-          z-index: 20;
-          animation: float 4s ease-in-out infinite;
-        }
-        .stat-card:nth-child(1) { animation-delay: 0s; }
-        .stat-card:nth-child(2) { animation-delay: 1s; }
-        .stat-card:nth-child(3) { animation-delay: .5s; }
-        .stat-card:nth-child(4) { animation-delay: 1.5s; }
-
-        @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50%       { transform: translateY(-8px); }
-        }
-
-        .stat-card .stat-value {
-          font-size: 22px;
-          font-weight: 800;
-          color: #fff;
-          margin-bottom: 4px;
-          display: flex; align-items: center; gap: 8px;
-        }
-        .stat-card .stat-value .stat-icon {
-          width: 28px; height: 28px;
-          background: rgba(56,189,248,.15);
-          border-radius: 8px;
-          display: flex; align-items: center; justify-content: center;
-        }
-        .stat-card .stat-label {
-          font-size: 11.5px;
-          color: rgba(255,255,255,.45);
-          line-height: 1.4;
-        }
-
-        /* Stat positions */
-        .stat-top-left   { top: 55px;  left: -20px; }
-        .stat-bottom-left { bottom: 80px; left: -10px; }
-        .stat-top-right  { top: 80px;  right: -10px; }
-        .stat-bottom-right { bottom: 100px; right: -20px; }
-
-        /* Phone mockup placeholder */
-        .phone-mockup-wrapper {
+        .phone-wrap {
           position: relative;
-          z-index: 10;
-          width: 260px;
+          z-index: 2;
+          width: min(360px, 48vw);
           perspective: 1000px;
         }
-        .phone-mockup {
+
+        .phone-mockup-img {
           width: 100%;
-          aspect-ratio: 9/19.5;
-          border-radius: 36px;
-          background: #0a1628;
-          border: 2px solid rgba(255,255,255,.12);
-          box-shadow:
-            0 0 0 1px rgba(255,255,255,.04),
-            0 40px 80px rgba(0,0,0,.6),
-            inset 0 -24px 56px rgba(56, 189, 248, 0.1);
+          height: auto;
+          display: block;
           transform: perspective(900px) rotateY(-10deg) rotateX(4deg);
+          filter: brightness(0.86) contrast(1.04)
+            drop-shadow(0 32px 56px rgba(15, 23, 42, 0.28));
+        }
+
+        .stat-card {
+          position: absolute;
+          z-index: 4;
+          min-width: 165px;
+          padding: 16px 18px;
+          animation: float 4s ease-in-out infinite;
+        }
+
+        .stat-card strong {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          margin-bottom: 6px;
+        }
+
+        .stat-card .stat-icon {
+          width: 28px;
+          height: 28px;
+          border-radius: 8px;
+          background: rgba(255, 255, 255, 0.14);
+          border: 1px solid rgba(255, 255, 255, 0.38);
+          backdrop-filter: blur(10px) saturate(160%);
+          -webkit-backdrop-filter: blur(10px) saturate(160%);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
           display: flex;
           align-items: center;
           justify-content: center;
-          position: relative;
-          overflow: hidden;
-        }
-        .phone-notch {
-          position: absolute;
-          top: 10px; left: 50%;
-          transform: translateX(-50%);
-          width: 90px; height: 26px;
-          background: #050d1a;
-          border-radius: 20px;
-          z-index: 2;
-        }
-        .phone-inner {
-          width: 100%; height: 100%;
-          display: flex; align-items: center; justify-content: center;
-        }
-        .phone-img-placeholder {
-          width: 100%; height: 100%;
-          object-fit: cover;
-          border-radius: 34px;
-        }
-        .phone-placeholder-label {
-          color: rgba(255,255,255,.18);
-          font-size: 12px;
-          font-weight: 500;
-          text-align: center;
-          letter-spacing: .06em;
-          padding: 20px;
         }
 
-        /* Responsive */
-        @media (max-width: 900px) {
-          .hero-body { grid-template-columns: 1fr; padding: 40px 24px; }
-          .hero-right { min-height: 420px; }
+        .stat-card span {
+          display: block;
         }
+
+        .stat-1 { top: 54px; left: 0; }
+        .stat-2 { bottom: 86px; left: 18px; animation-delay: .8s; }
+        .stat-3 { top: 86px; right: 0; animation-delay: .4s; }
+        .stat-4 { bottom: 110px; right: -10px; animation-delay: 1.1s; }
+
+        @keyframes float {
+          0%, 100% { translate: 0 0; }
+          50% { translate: 0 -8px; }
+        }
+
+        @media (max-width: 980px) {
+          .parallax-body {
+            grid-template-columns: 1fr;
+            padding: 64px 24px 72px;
+          }
+
+          .hero-visual {
+            min-height: 500px;
+          }
+
+          .stat-1 { left: 4px; }
+          .stat-2 { left: 10px; }
+          .stat-3 { right: 4px; }
+          .stat-4 { right: 10px; }
+        }
+
+        @media (max-width: 640px) {
+          .feature-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .hero-visual {
+            min-height: 440px;
+          }
+
+          .phone-wrap {
+            width: 260px;
+          }
+
+          .stat-card {
+            min-width: 135px;
+            padding: 13px 14px;
+          }
+
+        }
+
       `}</style>
 
-      <section className="hero-root relative z-10 isolate">
-        <div className="glow-orb glow-orb-1" />
-        <div className="glow-orb glow-orb-2" />
+      <section className="section-light parallax-hero relative z-10">
+        <div className="parallax-bg">
+          <div className="parallax-grid" aria-hidden />
+          <div className="parallax-dots" aria-hidden />
+          <div className="parallax-orb parallax-orb-a" aria-hidden />
+          <div className="parallax-orb parallax-orb-b" aria-hidden />
+          <div className="parallax-ring" aria-hidden />
+        </div>
 
-        {/* Hero body */}
-        <div className="hero-body">
-          {/* Left */}
-          <div className="hero-left">
-            <p className="eyebrow">More than web design</p>
-            <h2 className="hero-heading">
+        <motion.div className="parallax-body">
+          <motion.div
+            variants={revealContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={revealViewport}
+          >
+            <motion.p
+              variants={revealItem}
+              className="text-xs font-semibold uppercase tracking-[0.35em] text-[var(--color-accent)] sm:text-sm"
+            >
+              More than web design
+            </motion.p>
+
+            <motion.h2
+              variants={revealItem}
+              className="mt-5 max-w-4xl text-4xl font-semibold leading-[1.08] tracking-tight text-[var(--foreground)] sm:text-5xl lg:text-6xl"
+            >
               Web experiences
               <br />
-              powered by <span className="accent">data.</span>
-            </h2>
-            <p className="hero-sub">
+              powered by <span className="text-[var(--color-accent)]">data.</span>
+            </motion.h2>
+
+            <motion.p
+              variants={revealItem}
+              className="mt-5 max-w-xl text-lg leading-relaxed text-[var(--foreground-muted)]"
+            >
               We combine modern web design, audience intelligence, and marketing
               strategy to create digital experiences designed to attract, engage,
               and convert.
-            </p>
+            </motion.p>
 
-            <div className="feature-grid">
-              {features.map((f, i) => (
-                <div className="feature-card" key={i}>
-                  <div className="feature-icon">{f.icon}</div>
-                  <div className="feature-title">{f.title}</div>
-                  <div className="feature-desc">{f.desc}</div>
-                </div>
+            <motion.div className="feature-grid mt-10" variants={revealContainer}>
+              {features.map((feature) => (
+                <motion.div className="feature-card" variants={revealItem} key={feature.title}>
+                  <motion.div className="feature-icon">{feature.icon}</motion.div>
+                  <h3 className="text-base font-semibold text-[var(--foreground)]">{feature.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[var(--foreground-muted)]">{feature.desc}</p>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
 
-            <Link href="/services" className="explore-link">
-              Explore all services
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+            <motion.div variants={revealItem}>
+              <Link
+                href="/services"
+                className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-accent)] transition hover:gap-3"
               >
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </Link>
-          </div>
+                Explore all services
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden>
+                  <path
+                    d="M5 12h14M13 5l7 7-7 7"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </Link>
+            </motion.div>
+          </motion.div>
 
-          {/* Right — phone mockup + stats */}
-          <div className="hero-right">
+          <motion.div
+            className="hero-visual"
+            variants={revealContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={revealViewport}
+          >
             <div className="phone-glow" />
 
-            {/* Stat cards */}
-            <div className="stat-card stat-top-left">
-              <div className="stat-value">2.5M+</div>
-              <div className="stat-label">
+            <RevealUp className="stat-card stat-1">
+              <strong className="text-2xl font-semibold tracking-tight text-[var(--foreground)]">
+                2.5M+
+              </strong>
+              <span className="text-sm leading-snug text-[var(--foreground-muted)]">
                 Targeted audiences
                 <br />
                 analyzed
-              </div>
-            </div>
+              </span>
+            </RevealUp>
 
-            <div className="stat-card stat-bottom-left">
-              <div className="stat-value">45%+</div>
-              <div className="stat-label">
+            <RevealUp className="stat-card stat-2">
+              <strong className="text-2xl font-semibold tracking-tight text-[var(--foreground)]">
+                45%+
+              </strong>
+              <span className="text-sm leading-snug text-[var(--foreground-muted)]">
                 Average increase
                 <br />
                 in engagement
-              </div>
-            </div>
+              </span>
+            </RevealUp>
 
-            <div className="stat-card stat-top-right">
-              <div className="stat-value">
-                <span className="stat-icon">
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#38bdf8"
-                    strokeWidth="2"
-                  >
-                    <path d="M5 3l14 9-14 9V3z" />
+            <RevealUp className="stat-card stat-3">
+              <strong className="text-2xl font-semibold tracking-tight text-[var(--foreground)]">
+                <span className="stat-icon" aria-hidden>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 3l14 9-14 9V3z" stroke="#38bdf8" strokeWidth="2" />
                   </svg>
                 </span>
                 3.8x
-              </div>
-              <div className="stat-label">
+              </strong>
+              <span className="text-sm leading-snug text-[var(--foreground-muted)]">
                 Stronger conversion
                 <br />
                 rate
-              </div>
-            </div>
+              </span>
+            </RevealUp>
 
-            <div className="stat-card stat-bottom-right">
-              <div className="stat-value">
-                <span className="stat-icon">
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#38bdf8"
-                    strokeWidth="2.5"
-                  >
-                    <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+            <RevealUp className="stat-card stat-4">
+              <strong className="text-2xl font-semibold tracking-tight text-[var(--foreground)]">
+                <span className="stat-icon" aria-hidden>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" stroke="#38bdf8" strokeWidth="2.5" />
                   </svg>
                 </span>
                 99%
-              </div>
-              <div className="stat-label">
+              </strong>
+              <span className="text-sm leading-snug text-[var(--foreground-muted)]">
                 Websites built for
                 <br />
-                speed & performance
-              </div>
-            </div>
+                speed &amp; performance
+              </span>
+            </RevealUp>
 
-            {/* Phone mockup */}
-            <div className="phone-mockup-wrapper">
-              <div className="phone-mockup">
-                <div className="phone-notch" />
-                <div className="phone-inner">
-                  {/*
-                    Replace the div below with your <img> or <Image> component:
-                    <Image src="/your-mockup.png" alt="App mockup" fill className="phone-img-placeholder" />
-                  */}
-                  <div className="phone-placeholder-label">
-                    📱
-                    <br />
-                    <br />
-                    Mockup
-                    <br />
-                    placeholder
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+            <RevealUp className="phone-wrap">
+              <Image
+                src={PHONE_MOCKUP_SRC}
+                alt="AmeriList mobile website mockup"
+                width={540}
+                height={1100}
+                className="phone-mockup-img"
+                sizes="(max-width: 640px) 260px, 360px"
+                priority
+              />
+            </RevealUp>
+          </motion.div>
+        </motion.div>
       </section>
     </>
   );
