@@ -46,6 +46,9 @@ export async function POST(request: Request) {
   const email = payload.email?.trim();
   const phone = payload.phone?.trim();
 
+  const company = payload.company?.trim() ?? "";
+  const notes = payload.notes?.trim() ?? "";
+
   if (!firstName || !lastName || !email || !phone) {
     return NextResponse.json(
       { error: "First name, last name, email, and phone are required." },
@@ -57,13 +60,28 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid email address." }, { status: 400 });
   }
 
+  if (phone.replace(/\D/g, "").length < 7) {
+    return NextResponse.json({ error: "Invalid phone number." }, { status: 400 });
+  }
+
+  if (!company) {
+    return NextResponse.json({ error: "Company is required." }, { status: 400 });
+  }
+
+  if (!notes || notes.length < 20) {
+    return NextResponse.json(
+      { error: "Project details are required (at least 20 characters)." },
+      { status: 400 },
+    );
+  }
+
   const body = new URLSearchParams({
     oid: SALESFORCE_OID,
     first_name: firstName,
     last_name: lastName,
     email,
     phone,
-    company: payload.company?.trim() ?? "",
+    company,
     description: buildDescription(payload),
   });
 

@@ -3,7 +3,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { serviceOptions } from "./get-started-data";
 
 gsap.registerPlugin(useGSAP);
@@ -65,6 +65,53 @@ function splitName(full: string) {
   return { firstName, lastName };
 }
 
+const MIN_PROJECT_DETAILS_LENGTH = 20;
+
+function getContactFormError(form: ContactForm): string | null {
+  const name = form.name.trim();
+  const email = form.email.trim();
+  const phone = form.phone.trim();
+  const company = form.company.trim();
+  const message = form.message.trim();
+
+  if (!name) return "Please enter your name.";
+  if (!email) return "Please enter your email.";
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return "Please enter a valid email address.";
+  }
+  if (!phone) return "Please enter your phone number.";
+  if (phone.replace(/\D/g, "").length < 7) {
+    return "Please enter a valid phone number.";
+  }
+  if (!company) return "Please enter your company name.";
+  if (!message) return "Please tell us about your project.";
+  if (message.length < MIN_PROJECT_DETAILS_LENGTH) {
+    return `Please add more project details (at least ${MIN_PROJECT_DETAILS_LENGTH} characters).`;
+  }
+  return null;
+}
+
+function isContactFieldInvalid(
+  field: keyof ContactForm,
+  form: ContactForm,
+  showErrors: boolean,
+): boolean {
+  if (!showErrors) return false;
+  if (field === "name") return !form.name.trim();
+  if (field === "email") {
+    const email = form.email.trim();
+    return !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+  if (field === "phone") {
+    return !form.phone.trim() || form.phone.replace(/\D/g, "").length < 7;
+  }
+  if (field === "company") return !form.company.trim();
+  if (field === "message") {
+    return form.message.trim().length < MIN_PROJECT_DETAILS_LENGTH;
+  }
+  return false;
+}
+
 export function GetStartedWizard() {
   const [step, setStep] = useState(1);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
@@ -74,6 +121,7 @@ export function GetStartedWizard() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showContactErrors, setShowContactErrors] = useState(false);
   const [form, setForm] = useState<ContactForm>({
     name: "",
     email: "",
@@ -133,15 +181,21 @@ export function GetStartedWizard() {
     selectedServices.length > 0 &&
     (!selectedServices.includes("other") || otherDesc.trim().length > 0);
 
+  const contactFormError = useMemo(() => getContactFormError(form), [form]);
+  const isContactFormComplete = contactFormError === null;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+    setShowContactErrors(true);
 
-    const { firstName, lastName } = splitName(form.name);
-    if (!firstName || !form.email.trim() || !form.phone.trim()) {
-      setError("Name, email, and phone are required.");
+    const validationError = getContactFormError(form);
+    if (validationError) {
+      setError(validationError);
       return;
     }
+
+    const { firstName, lastName } = splitName(form.name);
 
     setSubmitting(true);
 
@@ -460,60 +514,110 @@ export function GetStartedWizard() {
                   </p>
                 </div>
               </div>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} noValidate>
                 <div className="get-started-flow__form-grid">
-                  <div className="get-started-flow__field get-started-flow__field--full">
+                  <div
+                    className={`get-started-flow__field get-started-flow__field--full${
+                      isContactFieldInvalid("name", form, showContactErrors)
+                        ? " get-started-flow__field--invalid"
+                        : ""
+                    }`}
+                  >
                     <label htmlFor="gs-name">Your name *</label>
                     <input
                       id="gs-name"
                       type="text"
+                      name="name"
+                      autoComplete="name"
                       required
+                      aria-invalid={isContactFieldInvalid("name", form, showContactErrors)}
                       placeholder="John Smith"
                       value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
                     />
                   </div>
-                  <div className="get-started-flow__field">
+                  <div
+                    className={`get-started-flow__field${
+                      isContactFieldInvalid("email", form, showContactErrors)
+                        ? " get-started-flow__field--invalid"
+                        : ""
+                    }`}
+                  >
                     <label htmlFor="gs-email">Email *</label>
                     <input
                       id="gs-email"
                       type="email"
+                      name="email"
+                      autoComplete="email"
                       required
+                      aria-invalid={isContactFieldInvalid("email", form, showContactErrors)}
                       placeholder="john@company.com"
                       value={form.email}
                       onChange={(e) => setForm({ ...form, email: e.target.value })}
                     />
                   </div>
-                  <div className="get-started-flow__field">
+                  <div
+                    className={`get-started-flow__field${
+                      isContactFieldInvalid("phone", form, showContactErrors)
+                        ? " get-started-flow__field--invalid"
+                        : ""
+                    }`}
+                  >
                     <label htmlFor="gs-phone">Phone *</label>
                     <input
                       id="gs-phone"
                       type="tel"
+                      name="phone"
+                      autoComplete="tel"
                       required
+                      aria-invalid={isContactFieldInvalid("phone", form, showContactErrors)}
                       placeholder="1-800-000-0000"
                       value={form.phone}
                       onChange={(e) => setForm({ ...form, phone: e.target.value })}
                     />
                   </div>
-                  <div className="get-started-flow__field get-started-flow__field--full">
-                    <label htmlFor="gs-company">Company</label>
+                  <div
+                    className={`get-started-flow__field get-started-flow__field--full${
+                      isContactFieldInvalid("company", form, showContactErrors)
+                        ? " get-started-flow__field--invalid"
+                        : ""
+                    }`}
+                  >
+                    <label htmlFor="gs-company">Company *</label>
                     <input
                       id="gs-company"
                       type="text"
+                      name="organization"
+                      autoComplete="organization"
+                      required
+                      aria-invalid={isContactFieldInvalid("company", form, showContactErrors)}
                       placeholder="Your Company Inc."
                       value={form.company}
                       onChange={(e) => setForm({ ...form, company: e.target.value })}
                     />
                   </div>
-                  <div className="get-started-flow__field get-started-flow__field--full">
-                    <label htmlFor="gs-message">Tell us about your project</label>
+                  <div
+                    className={`get-started-flow__field get-started-flow__field--full${
+                      isContactFieldInvalid("message", form, showContactErrors)
+                        ? " get-started-flow__field--invalid"
+                        : ""
+                    }`}
+                  >
+                    <label htmlFor="gs-message">Tell us about your project *</label>
                     <textarea
                       id="gs-message"
+                      name="message"
                       rows={4}
+                      required
+                      minLength={MIN_PROJECT_DETAILS_LENGTH}
+                      aria-invalid={isContactFieldInvalid("message", form, showContactErrors)}
                       placeholder="Goals, audience, timeline details..."
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
                     />
+                    <p className="get-started-flow__field-hint">
+                      {form.message.trim().length}/{MIN_PROJECT_DETAILS_LENGTH} characters minimum
+                    </p>
                   </div>
                 </div>
                 <div className="get-started-flow__nav-row">
@@ -523,7 +627,7 @@ export function GetStartedWizard() {
                   <button
                     type="submit"
                     className="get-started-flow__btn-next"
-                    disabled={submitting || !form.name || !form.email || !form.phone}
+                    disabled={submitting || !isContactFormComplete}
                   >
                     {submitting ? "Sending…" : "Send my brief"} <span aria-hidden>↗</span>
                   </button>
