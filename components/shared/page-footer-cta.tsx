@@ -1,11 +1,19 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
+import {
+  BannerGlassTitle,
+  type BannerGlassTitleLine,
+} from "./banner-glass-title";
 import "../portfolio/portfolio-footer-cta.css";
+
+const defaultTitleLines: BannerGlassTitleLine[] = [
+  { text: "Your project", tone: "default" },
+  { text: "starts here.", tone: "accent" },
+];
 
 export type PageFooterCtaProps = {
   id?: string;
   eyebrow?: string;
-  title?: ReactNode;
+  titleLines?: BannerGlassTitleLine[];
   lead?: string;
   ctaText?: string;
   ctaHref?: string;
@@ -16,13 +24,7 @@ export type PageFooterCtaProps = {
 export function PageFooterCta({
   id = "page-footer-cta-title",
   eyebrow = "Ready to be next?",
-  title = (
-    <>
-      Your project
-      <br />
-      <span>starts here.</span>
-    </>
-  ),
+  titleLines = defaultTitleLines,
   lead = "Let's build something together that makes this list.",
   ctaText = "Start Your Project",
   ctaHref = "/get-started",
@@ -40,9 +42,15 @@ export function PageFooterCta({
       <div className="portfolio-footer-cta__inner">
         <p className="portfolio-footer-cta__eyebrow">{eyebrow}</p>
 
-        <h2 id={id} className="portfolio-footer-cta__title">
-          {title}
-        </h2>
+        <BannerGlassTitle
+          as="h2"
+          id={id}
+          align="center"
+          size="compact"
+          showBar={false}
+          lines={titleLines}
+          className="portfolio-footer-cta__title"
+        />
 
         <p className="portfolio-footer-cta__lead">{lead}</p>
 

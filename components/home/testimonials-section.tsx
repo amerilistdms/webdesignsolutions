@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { SectionGlows } from "../shared/section-glows";
+import "./testimonials-section.css";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -54,7 +55,12 @@ export function TestimonialsSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
+  const [progressCycle, setProgressCycle] = useState(0);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const bumpProgress = useCallback(() => {
+    setProgressCycle((cycle) => cycle + 1);
+  }, []);
 
   const startInterval = useCallback(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
@@ -63,27 +69,36 @@ export function TestimonialsSection() {
     }, ROTATE_MS);
   }, []);
 
-  const goTo = useCallback((index: number) => {
-    if (!contentRef.current) {
-      setActive(index);
-      return;
-    }
-    gsap.to(contentRef.current, {
-      opacity: 0,
-      y: 14,
-      duration: 0.28,
-      ease: "power2.in",
-      onComplete: () => {
+  const goTo = useCallback(
+    (index: number) => {
+      if (index === active) {
+        bumpProgress();
+        startInterval();
+        return;
+      }
+      if (!contentRef.current) {
         setActive(index);
-        gsap.to(contentRef.current, {
-          opacity: 1,
-          y: 0,
-          duration: 0.42,
-          ease: "power2.out",
-        });
-      },
-    });
-  }, []);
+        return;
+      }
+      gsap.to(contentRef.current, {
+        opacity: 0,
+        y: 14,
+        duration: 0.28,
+        ease: "power2.in",
+        onComplete: () => {
+          setActive(index);
+          gsap.to(contentRef.current, {
+            opacity: 1,
+            y: 0,
+            duration: 0.42,
+            ease: "power2.out",
+          });
+        },
+      });
+      startInterval();
+    },
+    [active, bumpProgress, startInterval],
+  );
 
   useGSAP(
     () => {
@@ -140,7 +155,6 @@ export function TestimonialsSection() {
                   : "border-white/25 bg-transparent hover:border-white/50"
               }`}
               onClick={() => {
-                if (intervalRef.current) clearInterval(intervalRef.current);
                 goTo(i);
                 startInterval();
               }}
@@ -150,7 +164,10 @@ export function TestimonialsSection() {
 
         <article
           className="relative overflow-hidden rounded-2xl border bg-[#0b1220]/80 p-8 sm:p-10 md:p-11"
-          style={{ borderColor: `${t.color}33` }}
+          style={{
+            borderColor: `${t.color}33`,
+            ["--testimonial-duration" as string]: `${ROTATE_MS}ms`,
+          }}
         >
           <div
             className="absolute left-0 top-0 h-0.5 w-20 rounded-br-sm"
@@ -158,24 +175,28 @@ export function TestimonialsSection() {
             aria-hidden
           />
           <span
-            className="pointer-events-none absolute right-8 top-4 select-none text-5xl leading-none sm:text-6xl"
+            className="pointer-events-none absolute right-8 top-4 select-none font-serif text-5xl leading-none sm:text-6xl"
             style={{ color: `${t.color}22` }}
             aria-hidden
           >
             &ldquo;
           </span>
+
           <div
-            className="testimonial-progress-bar absolute bottom-0 left-0 h-0.5 rounded-tr-sm bg-[var(--color-accent)]"
+            key={`${active}-${progressCycle}`}
+            className="testimonials-section__progress absolute bottom-0 left-0"
             aria-hidden
           />
 
           <div ref={contentRef}>
-            <div className="mb-4 flex gap-0.5 text-sm text-[var(--color-accent)]" aria-hidden>
+            <div className="mb-4 flex gap-0.5 text-[var(--color-accent)]" aria-hidden>
               {Array.from({ length: t.rating }).map((_, i) => (
-                <span key={i}>★</span>
+                <span key={i} className="text-sm leading-none">
+                  ★
+                </span>
               ))}
             </div>
-            <blockquote className="relative z-[1] mb-6 max-w-3xl text-base leading-relaxed text-white/90">
+            <blockquote className="testimonials-section__quote relative z-[1] mb-6 max-w-3xl text-white/90">
               &ldquo;{t.quote}&rdquo;
             </blockquote>
             <footer className="flex items-center gap-4">
@@ -186,28 +207,24 @@ export function TestimonialsSection() {
                 {t.initials}
               </div>
               <div>
-                <p className="text-sm font-semibold text-white">{t.author}</p>
-                <p className="text-sm text-white/60">{t.role}</p>
+                <p className="testimonials-section__author text-white">{t.author}</p>
+                <p className="testimonials-section__role text-white/60">{t.role}</p>
               </div>
             </footer>
           </div>
         </article>
       </div>
 
-      <div className="relative z-10 mx-auto mt-16 max-w-6xl lg:mt-20 lg:flex lg:items-center lg:justify-between">
+      <div className="relative z-10 mx-auto mt-16 max-w-6xl lg:mt-20">
         <div className="max-w-2xl">
-          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-            Digital done right
-          </h2>
-          <p className="mt-4 text-lg leading-relaxed text-white/80">
-            Tell us about your goals—we&apos;ll map a path from first sketch to
-            launch, with performance budgets and analytics baked in from day one.
+          <h2 className="testimonials-section__cta-title">Digital done right</h2>
+          <p className="testimonials-section__cta-text mt-4 text-white/80">
+            Tell us about your goals—we&apos;ll map a path from first sketch to launch,
+            with performance budgets and analytics baked in from day one.
           </p>
-        </div>
-        <div className="mt-8 flex shrink-0 lg:mt-0">
           <Link
             href="/get-started"
-            className="inline-flex items-center justify-center rounded-full bg-[var(--color-accent)] px-8 py-3.5 text-sm font-semibold text-[var(--color-nav)] transition hover:brightness-110"
+            className="mt-8 inline-flex items-center justify-center rounded-full bg-[var(--color-accent)] px-8 py-3.5 text-sm font-semibold text-[var(--color-nav)] transition hover:brightness-110"
           >
             Start a project
           </Link>

@@ -4,6 +4,12 @@
   --background: #f4f6fb;
   --foreground: #0f172a;
   --foreground-muted: #475569;
+  /* Typography scale (Plus Jakarta Sans) */
+  --type-body-size: 0.9375rem;
+  --type-body-leading: 1.65;
+  --type-lead-size: 1.125rem;
+  --type-lead-leading: 1.75;
+  --type-eyebrow-size: 0.75rem;
   --color-topbar: #0b1220;
   --color-nav: #0f1b33;
   --color-footer: #0b1220;
@@ -30,6 +36,8 @@ body {
   background: var(--color-nav);
   color: #fff;
   font-family: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-leading);
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
@@ -37,12 +45,15 @@ body {
 main {
   color: #fff;
   overflow-x: clip;
+  padding-top: var(--site-header-offset);
 }
 
-/* Full-bleed heroes sit under the floating header */
+/* Full-bleed heroes: exact viewport height (no extra main padding) */
 main:has(> .home-hero-outer:first-child),
+main:has(> .page-hero-outer:first-child),
 main:has(> .about-hero-outer:first-child),
-main:has(> .get-started-flow:first-child) {
+main:has(> .get-started-flow:first-child),
+main:has(> .site-hero:first-child) {
   padding-top: 0;
 }
 
@@ -106,8 +117,13 @@ main:has(> .get-started-flow:first-child) {
 }
 
 /* Blue/dark surfaces: cyan or dark type → white for legibility */
-.site-hero [class*="color-accent"]:not([class*="bg-clip-text"]),
-.site-hero [class*="foreground-muted"],
+.site-hero .site-hero__eyebrow,
+.site-hero .site-hero__lead {
+  -webkit-text-fill-color: unset;
+}
+
+.site-hero [class*="color-accent"]:not([class*="bg-clip-text"]):not(.site-hero__eyebrow),
+.site-hero [class*="foreground-muted"]:not(.site-hero__lead),
 .site-hero [class*="text-[var(--foreground)]"],
 section.text-white [class*="color-accent"]:not([class*="bg-clip-text"]),
 section.text-white [class*="foreground-muted"],
@@ -127,7 +143,7 @@ section.text-white [class*="foreground-muted"],
   color: rgba(255, 255, 255, 0.78) !important;
 }
 
-/* Full-viewport page heroes — shared layout for scroll / motion effects */
+/* Full-viewport page heroes — shared layout (not Home; see home-hero.css) */
 .site-hero {
   position: relative;
   margin-top: calc(-1 * var(--site-header-offset));
@@ -151,7 +167,7 @@ section.text-white [class*="foreground-muted"],
   will-change: transform, opacity;
 }
 
-.site-hero__content {
+.site-hero > .site-hero__content {
   position: relative;
   z-index: 10;
   width: 100%;
@@ -169,13 +185,13 @@ section.text-white [class*="foreground-muted"],
 }
 
 @media (min-width: 640px) {
-  .site-hero__content {
+  .site-hero > .site-hero__content {
     padding-inline: 1.5rem;
   }
 }
 
 @media (min-width: 1024px) {
-  .site-hero__content {
+  .site-hero > .site-hero__content {
     padding-inline: 2rem;
   }
 }
@@ -280,17 +296,3 @@ section.text-white [class*="foreground-muted"],
   text-decoration: underline;
 }
 
-@keyframes testimonial-progress {
-  from {
-    width: 0%;
-    opacity: 1;
-  }
-  to {
-    width: 100%;
-    opacity: 0.55;
-  }
-}
-
-.testimonial-progress-bar {
-  animation: testimonial-progress 5s linear forwards;
-}

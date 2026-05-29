@@ -43,7 +43,7 @@ export default function RootLayout({
       <body suppressHydrationWarning className="flex min-h-full flex-col font-sans">
         <GsapRouteCleanup />
         <SiteHeader />
-        <main className="flex-1 pt-[var(--site-header-offset)]">{children}</main>
+        <main className="flex-1">{children}</main>
         <SiteFooter />
       </body>
     </html>

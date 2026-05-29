@@ -2,17 +2,27 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  BannerGlassTitle,
+  type BannerGlassTitleLine,
+} from "./banner-glass-title";
 import "./parallax-banner.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const defaultTitleLines: BannerGlassTitleLine[] = [
+  { text: "We build what", tone: "default" },
+  { text: "others", tone: "accent" },
+  { text: "only promise.", tone: "muted" },
+];
+
 type ParallaxBannerProps = {
   image?: string;
   label?: string | null;
-  heading?: ReactNode;
+  titleLines?: BannerGlassTitleLine[];
   sub?: string;
   ctaText?: string;
   ctaHref?: string;
@@ -22,11 +32,7 @@ type ParallaxBannerProps = {
 export function ParallaxBanner({
   image = "/hero-agency-tech.jpg",
   label,
-  heading = (
-    <>
-      We build what <em>others</em> only promise.
-    </>
-  ),
+  titleLines = defaultTitleLines,
   sub = "Strategy, design, and execution — under one roof.",
   ctaText = "Start Your Project",
   ctaHref = "/get-started",
@@ -104,7 +110,14 @@ export function ParallaxBanner({
           </p>
         ) : null}
 
-        <h2 className="parallax-banner__heading parallax-banner__anim">{heading}</h2>
+        <BannerGlassTitle
+          as="h2"
+          align="center"
+          size="compact"
+          showBar={false}
+          lines={titleLines}
+          className="parallax-banner__heading parallax-banner__anim"
+        />
 
         <p className="parallax-banner__sub parallax-banner__anim">{sub}</p>
 

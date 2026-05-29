@@ -9,9 +9,12 @@ import {
   revealViewport,
 } from "../home/reveal-up";
 
-function ProcessCta() {
+export function ProcessCta() {
   return (
-    <section className="relative overflow-hidden bg-[var(--color-nav)] text-white">
+    <section
+      className="process-page-cta relative overflow-hidden bg-[var(--color-nav)] text-white"
+      aria-labelledby="process-cta-title"
+    >
       <div className="pointer-events-none absolute inset-0" aria-hidden>
         <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-[var(--color-glow-2)] blur-3xl opacity-50" />
         <div className="absolute -left-20 bottom-0 h-72 w-72 rounded-full bg-cyan-500/20 blur-3xl" />
@@ -30,6 +33,7 @@ function ProcessCta() {
           Ready when you are
         </motion.p>
         <motion.h2
+          id="process-cta-title"
           variants={revealItem}
           className="mt-5 text-3xl font-semibold tracking-tight sm:text-4xl"
         >
@@ -66,6 +70,7 @@ function ProcessCta() {
   );
 }
 
+/** @deprecated Use ProcessCta at the end of ProcessTimeline instead */
 export function ProcessSections() {
   return <ProcessCta />;
 }

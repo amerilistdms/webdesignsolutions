@@ -36,7 +36,8 @@ export function Hero() {
       <div ref={bottomFadeRef} className="home-hero-bottom-fade" aria-hidden />
 
       <div ref={stageRef} className="home-hero-stage">
-        <div className="home-hero-content site-hero__content flex flex-col justify-center">
+        <div className="home-hero-shell">
+        <div className="home-hero-content flex flex-col justify-center">
           <h1 className="home-hero-title">
             <span className="home-hero-title__bar" aria-hidden />
             <span className="home-hero-glass-line" data-text="Amerilist">
@@ -75,7 +76,7 @@ export function Hero() {
           </label>
         </div>
 
-        <div className="home-hero-actions site-hero__content">
+        <div className="home-hero-actions">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link href="/get-started" className="home-hero-btn">
               Get started
@@ -84,6 +85,7 @@ export function Hero() {
               Explore services
             </Link>
           </div>
+        </div>
         </div>
       </div>
       </div>

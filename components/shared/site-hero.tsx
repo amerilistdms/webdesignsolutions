@@ -1,7 +1,11 @@
 "use client";
 
 import { useRef, type ReactNode } from "react";
+import "./site-hero-typography.css";
+import "./site-hero-viewport.css";
 import { useHeroPinScroll } from "./use-hero-pin-scroll";
+
+export const SITE_HERO_PIN = { pinVH: 0.62, scrub: 0.9 } as const;
 
 type SiteHeroProps = {
   children: ReactNode;
@@ -11,6 +15,10 @@ type SiteHeroProps = {
   background?: ReactNode;
   /** Full-bleed photo or tint behind decorations. */
   backdrop?: ReactNode;
+  /** Scroll-scrub fade on the hero content (disable for compound hero layouts). */
+  pinScroll?: boolean;
+  pinVH?: number;
+  scrub?: number;
 };
 
 function joinClasses(...parts: (string | undefined)[]) {
@@ -23,16 +31,22 @@ export function SiteHero({
   contentClassName,
   background,
   backdrop,
+  pinScroll = true,
+  pinVH = SITE_HERO_PIN.pinVH,
+  scrub = SITE_HERO_PIN.scrub,
 }: SiteHeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  useHeroPinScroll(sectionRef);
+  useHeroPinScroll(sectionRef, { enabled: pinScroll, pinVH, scrub });
 
   const hasLayers = Boolean(backdrop || background);
 
   return (
     <section
       ref={sectionRef}
-      className={joinClasses("site-hero site-hero--pin", className)}
+      className={joinClasses(
+        "site-hero site-hero--pin site-hero--fullscreen",
+        className,
+      )}
     >
       {hasLayers ? (
         <div

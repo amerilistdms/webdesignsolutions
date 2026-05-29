@@ -71,22 +71,7 @@
 }
 
 .parallax-banner__heading {
-  max-width: 56rem;
   margin: 0 0 1.25rem;
-  font-size: clamp(2.5rem, 5.5vw, 5.5rem);
-  font-weight: 800;
-  line-height: 1.02;
-  letter-spacing: -0.04em;
-  color: #eff2f9;
-}
-
-.parallax-banner__heading em {
-  font-style: normal;
-  background: linear-gradient(90deg, #81e92f 0%, #38bdf8 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
 }
 
 .parallax-banner__sub {

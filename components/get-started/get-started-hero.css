@@ -1,0 +1,75 @@
+.get-started-hero__content {
+  max-width: 72rem;
+}
+
+.get-started-hero__grid {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: stretch;
+  gap: clamp(2rem, 5vw, 3rem);
+}
+
+@media (min-width: 1024px) {
+  .get-started-hero__grid {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+  }
+
+  .get-started-hero__grid .site-hero__copy {
+    flex: 1;
+  }
+}
+
+.get-started-hero__contact {
+  display: flex;
+  width: 100%;
+  max-width: 22rem;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 1024px) {
+  .get-started-hero__contact {
+    flex-shrink: 0;
+  }
+}
+
+.get-started-hero__contact-card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.875rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #eff2f9;
+  text-decoration: none;
+  backdrop-filter: blur(12px);
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.get-started-hero__contact-card:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.get-started-hero__contact-note {
+  margin: 0.25rem 0 0;
+  text-align: center;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@media (min-width: 1024px) {
+  .get-started-hero__contact-note {
+    text-align: right;
+  }
+}

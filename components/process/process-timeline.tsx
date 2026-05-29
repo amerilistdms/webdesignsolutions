@@ -7,6 +7,7 @@ import { ShowcaseWatermarkTitle } from "../shared/showcase-watermark-title";
 import { processIntro } from "./process-data";
 import { ProcessStepHover } from "./process-step-hover";
 import { processTimelineSteps } from "./process-timeline-data";
+import { ProcessCta } from "./process-sections";
 import "./process-timeline.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -150,6 +151,8 @@ export function ProcessTimeline() {
             );
           })}
         </div>
+
+        <ProcessCta />
       </div>
     </section>
   );

@@ -79,11 +79,8 @@ export function PortfolioCarouselShowcase({
   const titleRef = useRef<HTMLParagraphElement>(null);
   const categoryRef = useRef<HTMLParagraphElement>(null);
   const itemsKey = getCarouselItemsKey(items);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setIsLoading(true);
-  }, [itemsKey]);
+  const [loadedKey, setLoadedKey] = useState<string | null>(null);
+  const isLoading = loadedKey !== itemsKey;
 
   useEffect(() => {
     const root = rootRef.current;
@@ -149,7 +146,7 @@ export function PortfolioCarouselShowcase({
         );
       } catch (error) {
         console.error("Portfolio carousel texture load failed:", error);
-        setIsLoading(false);
+        setLoadedKey(itemsKey);
         return;
       }
 
@@ -158,7 +155,7 @@ export function PortfolioCarouselShowcase({
         return;
       }
 
-      setIsLoading(false);
+      setLoadedKey(itemsKey);
 
       gsapCtx = gsap.context(() => {
         gsap.timeline({
@@ -303,7 +300,7 @@ export function PortfolioCarouselShowcase({
       lenis?.destroy();
       ScrollTrigger.refresh();
     };
-  }, [itemsKey, watermarkLabel, filter]);
+  }, [items, itemsKey, watermarkLabel, filter]);
 
   return (
     <div ref={rootRef} className="portfolio-carousel">

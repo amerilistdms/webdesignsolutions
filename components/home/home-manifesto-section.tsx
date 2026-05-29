@@ -4,7 +4,9 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TEAM_WHITEBOARD_IMAGE } from "@/lib/verified-images";
+import { TrustMarqueeLogos } from "./trust-marquee-logos";
 import "./home-manifesto-section.css";
+import "./trust-marquee-section.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -90,6 +92,13 @@ export function HomeManifestoSection() {
             decoding="async"
           />
           <div className="home-manifesto__visual-overlay" aria-hidden />
+        </div>
+
+        <div className="home-manifesto__logos">
+          <p className="home-manifesto__logos-eyebrow">
+            Trusted by teams who expect more than pretty pages
+          </p>
+          <TrustMarqueeLogos className="home-manifesto__logos-marquee" />
         </div>
       </div>
     </section>

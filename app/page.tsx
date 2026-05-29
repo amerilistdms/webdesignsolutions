@@ -3,7 +3,6 @@ import { HomeManifestoSection } from "../components/home/home-manifesto-section"
 import { HomeFaqSection } from "../components/home/home-faq-section";
 import { TestimonialsSection } from "../components/home/testimonials-section";
 import { HomeWhyUsSection } from "../components/home/home-why-us-section";
-import { TrustMarqueeSection } from "../components/home/trust-marquee-section";
 import { ParallaxBanner } from "../components/shared/parallax-banner";
 
 const HOME_PARALLAX_IMAGE =
@@ -16,7 +15,6 @@ export default function Home() {
       <HomeWhyUsSection />
       <ParallaxBanner image={HOME_PARALLAX_IMAGE} label="" />
       <HomeManifestoSection />
-      <TrustMarqueeSection />
       <TestimonialsSection />
       <HomeFaqSection />
     </>

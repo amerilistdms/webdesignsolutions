@@ -1,0 +1,36 @@
+.banner-glass-title {
+  position: relative;
+  max-width: 56rem;
+  padding-left: 1.25rem;
+  font-size: clamp(2.75rem, 6.2vw, 4.75rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  color: #eff2f9;
+}
+
+.banner-glass-title--center {
+  padding-left: 0;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.banner-glass-title--center .home-hero-title__bar {
+  display: none;
+}
+
+.banner-glass-title--compact {
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+.banner-glass-title--compact .home-hero-title__accent {
+  font-size: clamp(2rem, 4.5vw, 3.35rem);
+}
+
+@media (min-width: 640px) {
+  .banner-glass-title:not(.banner-glass-title--center) {
+    padding-left: 1.5rem;
+  }
+}

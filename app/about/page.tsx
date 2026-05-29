@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { AboutHero } from "../../components/about/about-hero";
-import { AboutSections } from "../../components/about/about-sections";
+import { AboutPageFlow } from "../../components/about/about-page-flow";
 import { TEAM_COLLAB_IMAGE } from "@/lib/verified-images";
 import { SplitFeature } from "../../components/shared/split-feature";
 
@@ -31,7 +31,7 @@ export default function AboutPage() {
         ctaText="Learn Our Process"
         ctaHref="/our-process"
       />
-      <AboutSections />
+      <AboutPageFlow />
     </>
   );
 }

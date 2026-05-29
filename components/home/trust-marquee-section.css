@@ -45,6 +45,7 @@
   color: rgba(239, 242, 249, 0.55);
 }
 
+.trust-marquee-logos,
 .trust-marquee-section__marquee {
   position: relative;
   z-index: 1;
@@ -66,6 +67,7 @@
 }
 
 @media (min-width: 640px) {
+  .trust-marquee-logos,
   .trust-marquee-section__marquee {
     -webkit-mask-image: linear-gradient(
       to right,

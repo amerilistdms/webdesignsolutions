@@ -17,6 +17,40 @@
   align-items: center;
 }
 
+.home-manifesto__logos {
+  grid-column: 1 / -1;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.home-manifesto__logos-eyebrow {
+  margin: 0 0 clamp(1.5rem, 3vw, 2rem);
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(239, 242, 249, 0.55);
+}
+
+.home-manifesto__logos-marquee {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 10%,
+    #000 90%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 10%,
+    #000 90%,
+    transparent 100%
+  );
+}
+
 .home-manifesto__copy {
   min-width: 0;
 }

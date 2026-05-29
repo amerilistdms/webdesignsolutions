@@ -206,6 +206,27 @@
   will-change: transform, opacity;
 }
 
+/* Same horizontal rhythm as header nav (max-w-7xl + page gutters) */
+.home-hero-shell {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .home-hero-shell {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .home-hero-shell {
+    padding-inline: 2rem;
+  }
+}
+
 .home-hero-content {
   position: relative;
   display: flex;

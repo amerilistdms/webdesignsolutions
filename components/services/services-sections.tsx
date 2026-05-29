@@ -11,13 +11,10 @@ export function ServicesSections() {
           embedded
           id="services-footer-cta-title"
           eyebrow="Ready to grow online?"
-          title={
-            <>
-              The right services,
-              <br />
-              <span>one team.</span>
-            </>
-          }
+          titleLines={[
+            { text: "The right services,", tone: "default" },
+            { text: "one team.", tone: "accent" },
+          ]}
           lead="From web design and SEO to email and data—we'll build a stack that fits your goals and budget."
           ctaText="Start Your Project"
         />

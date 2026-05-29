@@ -258,6 +258,20 @@
   transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+.portfolio-work__card-hit {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  text-decoration: none;
+}
+
+.portfolio-work__card-live-pill,
+.portfolio-work__card-live-btn {
+  position: relative;
+  z-index: 4;
+}
+
 .portfolio-work__card:hover {
   transform: translateY(-8px);
 }
@@ -437,15 +451,15 @@
 }
 
 .portfolio-work__card-tag {
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  border: 1px solid rgba(56, 189, 248, 0.35);
   border-radius: 9999px;
-  background: rgba(15, 27, 51, 0.5);
-  padding: 0.3rem 0.7rem;
-  font-size: 0.625rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  background: rgba(4, 12, 28, 0.72);
+  padding: 0.35rem 0.8rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.95);
+  color: #eff2f9;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow:
@@ -472,10 +486,7 @@
 }
 
 .portfolio-work__card-cat {
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.5);
+  display: none;
 }
 
 .portfolio-work__card-desc {

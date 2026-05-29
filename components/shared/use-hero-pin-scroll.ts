@@ -10,6 +10,7 @@ export type HeroPinScrollOptions = {
   /** Extra scroll distance while hero animates, in viewport heights. */
   pinVH?: number;
   scrub?: number;
+  enabled?: boolean;
 };
 
 function pinEndDistance(pinVH: number) {
@@ -35,9 +36,11 @@ function getHeroContent(section: HTMLElement) {
  */
 export function useHeroPinScroll(
   sectionRef: RefObject<HTMLElement | null>,
-  { pinVH = 0.62, scrub = 0.9 }: HeroPinScrollOptions = {},
+  { pinVH = 0.62, scrub = 0.9, enabled = true }: HeroPinScrollOptions = {},
 ) {
   useEffect(() => {
+    if (!enabled) return;
+
     const section = sectionRef.current;
     if (!section) return;
 
@@ -88,5 +91,5 @@ export function useHeroPinScroll(
       window.removeEventListener("load", refresh);
       mm.revert();
     };
-  }, [sectionRef, pinVH, scrub]);
+  }, [sectionRef, pinVH, scrub, enabled]);
 }

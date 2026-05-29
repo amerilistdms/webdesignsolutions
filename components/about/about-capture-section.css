@@ -1,0 +1,180 @@
+.about-capture {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(6rem, 12vw, 8.75rem) clamp(1.5rem, 5vw, 5rem);
+  background: #0a1224;
+  color: #eff2f9;
+}
+
+.about-capture__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 87.5rem;
+  margin: 0 auto;
+}
+
+.about-capture__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1.25rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.about-capture__label::before {
+  content: "";
+  display: block;
+  width: 1.5rem;
+  height: 1px;
+  background: var(--color-accent);
+}
+
+.about-capture__title {
+  margin: 0;
+  max-width: 52rem;
+  font-size: clamp(2.25rem, 4vw, 3.75rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #eff2f9;
+}
+
+.about-capture__title span {
+  background: linear-gradient(90deg, #81e92f 0%, #38bdf8 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.about-capture__lead {
+  max-width: 36rem;
+  margin: 1.5rem 0 0;
+  font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+  line-height: 1.7;
+  color: #9da5c0;
+}
+
+.about-capture__grid {
+  display: grid;
+  gap: clamp(1.25rem, 2.5vw, 1.75rem);
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+}
+
+@media (min-width: 768px) {
+  .about-capture__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.about-capture__card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  padding: clamp(1.75rem, 3vw, 2.25rem);
+  background: rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(42px) saturate(185%) contrast(1.04);
+  -webkit-backdrop-filter: blur(42px) saturate(185%) contrast(1.04);
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.28),
+    0 2px 12px rgba(14, 116, 200, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.14),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.04);
+  transition:
+    transform 0.55s cubic-bezier(0.42, 0, 0.58, 1),
+    box-shadow 0.55s cubic-bezier(0.42, 0, 0.58, 1);
+  will-change: transform;
+}
+
+.about-capture__card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.12) 32%,
+    rgba(255, 255, 255, 0.04) 55%,
+    rgba(56, 189, 248, 0.35) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.about-capture__card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.03) 32%,
+    transparent 58%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about-capture__card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow:
+    0 22px 56px rgba(0, 0, 0, 0.34),
+    0 4px 20px rgba(56, 189, 248, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.18),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.06);
+}
+
+.about-capture__card-body {
+  position: relative;
+  z-index: 2;
+}
+
+.about-capture__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 1.25rem;
+  border-radius: 0.875rem;
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  background: rgba(4, 12, 28, 0.55);
+  color: var(--color-accent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.about-capture__card-title {
+  margin: 0 0 0.875rem;
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #eff2f9;
+}
+
+.about-capture__card-text {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: #9da5c0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-capture__card:hover {
+    transform: none;
+  }
+}

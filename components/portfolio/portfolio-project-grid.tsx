@@ -200,9 +200,6 @@ export function PortfolioProjectGrid() {
                     ))}
                   </div>
                   <div className="portfolio-work__card-title">{item.title}</div>
-                  <div className="portfolio-work__card-cat">
-                    {getPortfolioCategoryLabel(item.category)}
-                  </div>
                   {liveUrl ? (
                     <div className="portfolio-work__card-footer">
                       <a
@@ -220,12 +217,15 @@ export function PortfolioProjectGrid() {
               </>
             );
 
-            return href ? (
-              <Link key={item.id} href={href} className="portfolio-work__card">
-                {cardInner}
-              </Link>
-            ) : (
+            return (
               <div key={item.id} className="portfolio-work__card">
+                {href ? (
+                  <Link
+                    href={href}
+                    className="portfolio-work__card-hit"
+                    aria-label={`View case study: ${item.title}`}
+                  />
+                ) : null}
                 {cardInner}
               </div>
             );

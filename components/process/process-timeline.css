@@ -1,7 +1,7 @@
 .process-timeline {
   position: relative;
   overflow-x: clip;
-  padding: 0 0 clamp(5rem, 10vw, 10rem);
+  padding: 0 0 clamp(2rem, 5vw, 3rem);
   background: #040c1c;
   color: #eff2f9;
 }
