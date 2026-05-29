@@ -12,8 +12,8 @@
   --color-accent-strong: #0ea5e9;
   --color-glow-1: rgba(56, 189, 248, 0.38);
   --color-glow-2: rgba(14, 165, 233, 0.3);
-  /* Fixed top bar + main nav (~40px + ~64px); tune if header height changes */
-  --site-header-offset: 6.5rem;
+  /* Floating pill nav */
+  --site-header-offset: 5.5rem;
 }
 
 @theme inline {
@@ -22,25 +22,71 @@
   --font-sans: var(--font-jakarta);
 }
 
+html {
+  overflow-x: clip;
+}
+
 body {
   background: var(--color-nav);
   color: #fff;
   font-family: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
 
 main {
   color: #fff;
+  overflow-x: clip;
 }
 
-/* Header + footer: white type on dark chrome */
+/* Full-bleed heroes sit under the floating header */
+main:has(> .home-hero-outer:first-child),
+main:has(> .about-hero-outer:first-child),
+main:has(> .get-started-flow:first-child) {
+  padding-top: 0;
+}
+
+/* Header + footer chrome */
 .site-chrome,
-.site-chrome a {
+.site-chrome a:not(.main-nav-link) {
   color: #fff;
 }
 
-.site-chrome a:hover {
+.site-chrome a:not(.main-nav-link):hover {
   color: rgba(255, 255, 255, 0.85);
+}
+
+.site-chrome .main-nav-link {
+  color: rgba(255, 255, 255, 0.82);
+  font-weight: 500;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.site-chrome .main-nav-link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.site-chrome .main-nav-link[data-active="true"] {
+  color: #fff;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.site-chrome .main-nav-menu-btn {
+  color: #fff;
+}
+
+.site-chrome .main-nav-menu-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@supports (background: color-mix(in srgb, white 50%, transparent)) {
+  html.site-scrolled .main-nav-bar--scrolled {
+    background: color-mix(in srgb, var(--color-nav) 28%, transparent);
+  }
 }
 
 /* Full-viewport heroes and dark bands */
@@ -60,14 +106,20 @@ main {
 }
 
 /* Blue/dark surfaces: cyan or dark type → white for legibility */
-.site-hero [class*="color-accent"],
+.site-hero [class*="color-accent"]:not([class*="bg-clip-text"]),
 .site-hero [class*="foreground-muted"],
 .site-hero [class*="text-[var(--foreground)]"],
-section.text-white [class*="color-accent"],
+section.text-white [class*="color-accent"]:not([class*="bg-clip-text"]),
 section.text-white [class*="foreground-muted"],
 section.text-white [class*="text-[var(--foreground)]"]:not([class*="bg-white"]),
-.on-blue [class*="color-accent"] {
+.on-blue [class*="color-accent"]:not([class*="bg-clip-text"]) {
   color: #fff !important;
+}
+
+.site-hero [class*="bg-clip-text"],
+section.text-white [class*="bg-clip-text"] {
+  color: transparent !important;
+  -webkit-text-fill-color: transparent;
 }
 
 section.text-white [class*="foreground-muted"],
@@ -90,6 +142,15 @@ section.text-white [class*="foreground-muted"],
   box-sizing: border-box;
 }
 
+.site-hero__bg-layer {
+  z-index: 0;
+  will-change: transform;
+}
+
+.site-hero--pin .site-hero__content {
+  will-change: transform, opacity;
+}
+
 .site-hero__content {
   position: relative;
   z-index: 10;
@@ -97,6 +158,14 @@ section.text-white [class*="foreground-muted"],
   max-width: 72rem;
   margin-inline: auto;
   padding-inline: 1rem;
+}
+
+.hero-title__line--accent {
+  filter: drop-shadow(0 0 28px rgba(129, 233, 47, 0.22));
+}
+
+.hero-title__clip {
+  display: block;
 }
 
 @media (min-width: 640px) {
@@ -209,4 +278,19 @@ section.text-white [class*="foreground-muted"],
 
 .legal-content-inner a:hover {
   text-decoration: underline;
+}
+
+@keyframes testimonial-progress {
+  from {
+    width: 0%;
+    opacity: 1;
+  }
+  to {
+    width: 100%;
+    opacity: 0.55;
+  }
+}
+
+.testimonial-progress-bar {
+  animation: testimonial-progress 5s linear forwards;
 }

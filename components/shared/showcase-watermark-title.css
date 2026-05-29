@@ -1,0 +1,77 @@
+.showcase-watermark-wrap {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  container-type: inline-size;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(14rem, 38vw, 22rem);
+  padding: clamp(2rem, 5vw, 3.5rem) clamp(1.25rem, 4vw, 3rem);
+  overflow: visible;
+}
+
+.showcase-watermark {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  font-size: clamp(3.25rem, 26cqw, 12.5rem);
+  font-weight: 800;
+  line-height: 0.95;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  color: #fff;
+  opacity: 0.05;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Portfolio carousel: horizontal scroll animation on the label */
+.showcase-watermark-wrap--scroll {
+  overflow-x: clip;
+}
+
+.showcase-watermark-wrap--scroll .showcase-watermark {
+  width: auto;
+  max-width: none;
+  font-size: clamp(4rem, 28vw, 16rem);
+  text-align: left;
+}
+
+.showcase-watermark-wrap--with-actions {
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.showcase-watermark-actions {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  margin-left: auto;
+  padding-bottom: 0.5rem;
+}
+
+.showcase-watermark-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #eff2f9;
+  text-decoration: none;
+  transition:
+    gap 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.showcase-watermark-link:hover {
+  gap: 0.75rem;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}

@@ -1,0 +1,201 @@
+.process-horizontal-pin {
+  --accent: var(--color-accent, #38bdf8);
+  --cream: #eff2f9;
+  --muted: #9da5c0;
+  --border: rgba(255, 255, 255, 0.1);
+
+  position: relative;
+  overflow: hidden;
+  background: #040c1c;
+}
+
+.process-horizontal-pin .ph-header {
+  position: absolute;
+  top: 80px;
+  left: 80px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.process-horizontal-pin .ph-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.process-horizontal-pin .ph-label::before {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.process-horizontal-pin .ph-title {
+  margin: 0;
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--cream);
+}
+
+.process-horizontal-pin .scroll-hint {
+  position: absolute;
+  top: 80px;
+  right: 80px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.process-horizontal-pin .scroll-hint-arrow {
+  font-size: 20px;
+  color: var(--accent);
+  animation: ph-slide-right 1.5s ease-in-out infinite;
+}
+
+@keyframes ph-slide-right {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(8px);
+  }
+}
+
+.process-horizontal-pin .track {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 100vh;
+  padding: 0 80px;
+  will-change: transform;
+}
+
+.process-horizontal-pin .card {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  width: 420px;
+  min-height: 400px;
+  padding: 48px 44px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: #0b1529;
+  transition: border-color 0.3s ease;
+}
+
+.process-horizontal-pin .card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(56, 189, 248, 0.08) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.process-horizontal-pin .card:hover::before {
+  opacity: 1;
+}
+
+.process-horizontal-pin .card:hover {
+  border-color: rgba(56, 189, 248, 0.35);
+}
+
+.process-horizontal-pin .card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.process-horizontal-pin .card-num {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+
+.process-horizontal-pin .card-icon {
+  font-size: 32px;
+  color: rgba(239, 242, 249, 0.2);
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.process-horizontal-pin .card:hover .card-icon {
+  transform: rotate(15deg) scale(1.1);
+  color: var(--accent);
+}
+
+.process-horizontal-pin .card-title {
+  margin: 1.5rem 0 1rem;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+  white-space: pre-line;
+}
+
+.process-horizontal-pin .card-desc {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+.process-horizontal-pin .card-spacer {
+  flex-shrink: 0;
+  width: max(5rem, calc(100vw - 26.25rem - 4rem));
+}
+
+@media (max-width: 900px) {
+  .process-horizontal-pin .track {
+    padding: 0 24px;
+  }
+
+  .process-horizontal-pin .card {
+    width: 320px;
+    min-height: 360px;
+    padding: 36px 32px;
+  }
+
+  .process-horizontal-pin .ph-header {
+    left: 24px;
+  }
+
+  .process-horizontal-pin .scroll-hint {
+    right: 24px;
+  }
+}
+
+@supports selector(:has(*)) {
+  html:has(.process-horizontal-pin),
+  body:has(.process-horizontal-pin),
+  main:has(.process-horizontal-pin) {
+    overflow-x: visible;
+  }
+}

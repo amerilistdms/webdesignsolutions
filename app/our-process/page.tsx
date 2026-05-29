@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ProcessHero } from "../../components/process/process-hero";
+import { ProcessTimelineClient } from "../../components/process/process-timeline-client";
 import { ProcessSections } from "../../components/process/process-sections";
 import "./process-page.css";
 
@@ -13,6 +14,7 @@ export default function OurProcessPage() {
   return (
     <>
       <ProcessHero />
+      <ProcessTimelineClient />
       <ProcessSections />
     </>
   );

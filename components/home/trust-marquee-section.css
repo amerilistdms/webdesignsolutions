@@ -1,0 +1,85 @@
+.trust-marquee-section {
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+  background: linear-gradient(180deg, #1e3d66 0%, #1a3358 50%, #254a75 100%);
+  padding: clamp(4rem, 8vw, 6rem) 0;
+}
+
+.trust-marquee-section__parallax {
+  position: absolute;
+  inset: -25% 0;
+  pointer-events: none;
+  will-change: transform;
+  background:
+    radial-gradient(
+      ellipse 70% 55% at 20% 40%,
+      rgba(56, 189, 248, 0.12) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 85% 60%,
+      rgba(7, 78, 185, 0.2) 0%,
+      transparent 55%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(4, 12, 28, 0.4) 0%,
+      transparent 50%,
+      rgba(15, 27, 51, 0.35) 100%
+    );
+}
+
+.trust-marquee-section__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.trust-marquee-section__eyebrow {
+  margin: 0;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(239, 242, 249, 0.55);
+}
+
+.trust-marquee-section__marquee {
+  position: relative;
+  z-index: 1;
+  /* Fade logos at edges — no solid-color overlay band */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 12%,
+    #000 88%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 12%,
+    #000 88%,
+    transparent 100%
+  );
+}
+
+@media (min-width: 640px) {
+  .trust-marquee-section__marquee {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 8%,
+      #000 92%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 8%,
+      #000 92%,
+      transparent 100%
+    );
+  }
+}

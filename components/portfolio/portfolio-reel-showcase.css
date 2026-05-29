@@ -1,0 +1,194 @@
+.portfolio-reel {
+  position: relative;
+  background: #040c1c;
+  color: #fff;
+  overflow: hidden;
+}
+
+.portfolio-reel__header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: clamp(9rem, 22vw, 14rem);
+  padding: clamp(2rem, 5vw, 3.5rem) clamp(1.25rem, 4vw, 3rem) 1.25rem;
+  overflow: hidden;
+}
+
+.portfolio-reel__watermark {
+  display: inline-block;
+  font-size: clamp(3.5rem, 28vw, 14rem);
+  font-weight: 800;
+  line-height: 0.85;
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  opacity: 0.06;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.portfolio-reel__filters {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+  flex-shrink: 0;
+  max-width: min(100%, 22rem);
+}
+
+.portfolio-reel__filters-count {
+  margin: 0;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.portfolio-reel__filters-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+}
+
+.portfolio-reel__filter-btn {
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.4);
+  font-size: clamp(0.6rem, 1.1vw, 0.72rem);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  padding: 0.55rem 0.85rem;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+  text-align: right;
+}
+
+.portfolio-reel__filter-btn:hover {
+  color: rgba(255, 255, 255, 0.75);
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.portfolio-reel__filter-btn--active {
+  color: rgba(255, 255, 255, 0.95);
+  border-color: var(--color-accent);
+  background: rgba(56, 189, 248, 0.12);
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.15);
+}
+
+@media (min-width: 640px) {
+  .portfolio-reel__filters-list {
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    max-width: 20rem;
+  }
+
+  .portfolio-reel__filter-btn {
+    text-align: center;
+  }
+}
+
+.portfolio-reel__pin {
+  position: relative;
+  height: 100vh;
+  min-height: 28rem;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.portfolio-reel__track {
+  display: flex;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+  will-change: transform;
+}
+
+.portfolio-reel__card {
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(16rem, 42vw, 22rem);
+}
+
+.portfolio-reel__card-frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.portfolio-reel__card-image {
+  object-fit: cover;
+  object-position: top center;
+}
+
+.portfolio-reel__card-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(4, 12, 28, 0.92) 0%,
+    rgba(4, 12, 28, 0.15) 45%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.portfolio-reel__card-body {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 1.25rem;
+}
+
+.portfolio-reel__card-category {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.portfolio-reel__card-title {
+  margin: 0.4rem 0 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.portfolio-reel__empty {
+  padding: 4rem clamp(1.25rem, 4vw, 3rem);
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.portfolio-reel__hint {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+}

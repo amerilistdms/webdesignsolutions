@@ -1,3 +1,7 @@
+.process-step-card__body {
+  /* Hover motion handled by ProcessStepHover (Framer Motion) */
+}
+
 @keyframes process-pulse-ring {
   0%,
   100% {
@@ -8,10 +12,6 @@
     transform: scale(1.08);
     opacity: 1;
   }
-}
-
-.process-step-active .process-step-ring {
-  animation: process-pulse-ring 2.5s ease-in-out infinite;
 }
 
 .process-timeline-track {

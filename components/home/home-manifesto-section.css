@@ -1,0 +1,119 @@
+.home-manifesto {
+  --accent: var(--color-accent, #38bdf8);
+  --cream: #eff2f9;
+  --muted: #9da5c0;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(6rem, 12vw, 10rem) clamp(1.5rem, 5vw, 5rem);
+  background: var(--color-nav, #0f1b33);
+}
+
+.home-manifesto__inner {
+  display: grid;
+  max-width: 87.5rem;
+  margin: 0 auto;
+  grid-template-columns: 1fr minmax(280px, 0.9fr);
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.home-manifesto__copy {
+  min-width: 0;
+}
+
+.home-manifesto__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 3rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.home-manifesto__label::before {
+  content: "";
+  display: block;
+  width: 1.5rem;
+  height: 1px;
+  background: var(--accent);
+}
+
+.home-manifesto__text {
+  margin: 0;
+  font-size: clamp(2.25rem, 4.5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--cream);
+}
+
+.home-manifesto__wrap {
+  display: block;
+  overflow: hidden;
+}
+
+.home-manifesto__line {
+  display: block;
+}
+
+.home-manifesto__line--accent {
+  color: var(--accent);
+}
+
+.home-manifesto__line--muted {
+  color: rgba(239, 242, 249, 0.55);
+}
+
+.home-manifesto__visual {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #0a1224;
+}
+
+.home-manifesto__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.home-manifesto__visual-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(15, 27, 51, 0.15) 0%,
+    transparent 45%,
+    rgba(4, 12, 28, 0.35) 100%
+  );
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .home-manifesto__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .home-manifesto__visual {
+    aspect-ratio: 16 / 10;
+    order: -1;
+  }
+
+  .home-manifesto__label {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-manifesto__line {
+    transform: none !important;
+  }
+}

@@ -18,6 +18,7 @@ export type PortfolioItem = {
   title: string;
   category: Exclude<PortfolioCategory, "all">;
   image: string;
+  liveUrl?: string;
   detail?: PortfolioDetail;
 };
 
@@ -99,7 +100,13 @@ export const portfolioItems: PortfolioItem[] = [
     image: img("images/dsc-img-big.jpg"),
     detail: drivingSchoolDetail,
   },
-  { id: "mgp-email", title: "MGP Painting", category: "email", image: img("images/Email_MGP_Full.jpg") },
+  {
+    id: "mgp-email",
+    title: "MGP Painting",
+    category: "email",
+    image: img("images/Email_MGP_Full.jpg"),
+    liveUrl: "https://www.mgppainting.com/",
+  },
   { id: "marksys", title: "Marksys", category: "website", image: img("images/Web_Marksys_Full.jpg") },
   {
     id: "balanced-wellness",
@@ -115,7 +122,13 @@ export const portfolioItems: PortfolioItem[] = [
     image: img("images/dinning-f.jpg"),
     detail: dinningOutDetail,
   },
-  { id: "mgp-website", title: "MGP Painting — Website", category: "website", image: img("images/Web_MGP_full.jpg") },
+  {
+    id: "mgp-website",
+    title: "MGP Painting — Website",
+    category: "website",
+    image: img("images/Web_MGP_full.jpg"),
+    liveUrl: "https://www.mgppainting.com/",
+  },
   { id: "msg", title: "MSG", category: "email", image: img("images/Email_MSG_Full.jpg") },
   { id: "apria", title: "Apria", category: "website", image: img("images/web_apria.jpg") },
   { id: "disney", title: "Disney Parks", category: "email", image: img("images/disney-big.jpg") },
@@ -174,4 +187,49 @@ export function getPortfolioNav(slug: string) {
   const prev = current.detail.navPrev ? getPortfolioBySlug(current.detail.navPrev) : undefined;
   const next = current.detail.navNext ? getPortfolioBySlug(current.detail.navNext) : undefined;
   return { prev, next };
+}
+
+export function filterPortfolioItems(category: PortfolioCategory): PortfolioItem[] {
+  if (category === "all") return portfolioItems;
+  return portfolioItems.filter((item) => item.category === category);
+}
+
+export function getPortfolioFilterLabel(category: PortfolioCategory): string {
+  return portfolioFilters.find((entry) => entry.id === category)?.label ?? "All work";
+}
+
+export const portfolioCategoryLabels: Record<
+  Exclude<PortfolioCategory, "all">,
+  string
+> = {
+  website: "Website design",
+  logo: "Logo design",
+  email: "Email blast",
+};
+
+export function getPortfolioCategoryLabel(
+  category: Exclude<PortfolioCategory, "all">,
+): string {
+  return portfolioCategoryLabels[category];
+}
+
+export function getPortfolioWatermarkLabel(category: PortfolioCategory): string {
+  switch (category) {
+    case "website":
+      return "Web";
+    case "logo":
+      return "Brand";
+    case "email":
+      return "Email";
+    default:
+      return "Work";
+  }
+}
+
+export function getPortfolioItemsKey(items: PortfolioItem[]): string {
+  return items.map((item) => item.id).join("|");
+}
+
+export function getPortfolioLiveUrl(item: PortfolioItem): string | undefined {
+  return item.liveUrl ?? item.detail?.liveUrl;
 }

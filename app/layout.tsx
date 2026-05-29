@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import { GsapRouteCleanup } from "../components/gsap-route-cleanup";
 import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
 import "./globals.css";
@@ -40,6 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${plusJakarta.variable} h-full antialiased`}>
       <body suppressHydrationWarning className="flex min-h-full flex-col font-sans">
+        <GsapRouteCleanup />
         <SiteHeader />
         <main className="flex-1 pt-[var(--site-header-offset)]">{children}</main>
         <SiteFooter />

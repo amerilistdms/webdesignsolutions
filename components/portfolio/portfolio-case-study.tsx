@@ -4,7 +4,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Expand, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { useHeroPinScroll } from "../shared/use-hero-pin-scroll";
 import {
   getPortfolioNav,
   type PortfolioDetail,
@@ -19,6 +20,8 @@ export function PortfolioCaseStudy({ item }: PortfolioCaseStudyProps) {
   const { detail } = item;
   const { prev, next } = getPortfolioNav(detail.slug);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const heroRef = useRef<HTMLElement>(null);
+  useHeroPinScroll(heroRef);
 
   const closeLightbox = useCallback(() => setLightboxIndex(null), []);
 
@@ -49,16 +52,20 @@ export function PortfolioCaseStudy({ item }: PortfolioCaseStudyProps) {
 
   return (
     <>
-      <section className="relative -mt-[var(--site-header-offset)] overflow-hidden text-white">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${detail.bannerImage})` }}
-          aria-hidden
-        />
-        <div className="absolute inset-0 bg-[#040c1c]/80" aria-hidden />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_100%,rgba(56,189,248,0.2),transparent_60%)]" aria-hidden />
+      <section
+        ref={heroRef}
+        className="site-hero site-hero--pin overflow-hidden text-white"
+      >
+        <div className="site-hero__bg-layer pointer-events-none absolute inset-0 overflow-hidden" data-hero-bg aria-hidden>
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${detail.bannerImage})` }}
+          />
+          <div className="absolute inset-0 bg-[#040c1c]/80" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_100%,rgba(56,189,248,0.2),transparent_60%)]" />
+        </div>
 
-        <div className="relative z-10 mx-auto max-w-6xl px-4 py-28 sm:px-6 lg:px-8 lg:py-36">
+        <div className="site-hero__content">
           <Link
             href="/portfolio"
             className="inline-flex items-center gap-2 text-sm font-medium text-white/70 transition hover:text-[var(--color-accent)]"

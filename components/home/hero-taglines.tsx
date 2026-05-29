@@ -29,7 +29,7 @@ export function HeroTaglines() {
       aria-atomic="true"
     >
       <span className="relative inline-grid min-h-[1.15em] align-baseline">
-        <AnimatePresence mode="popLayout">
+        <AnimatePresence mode="wait" initial={false}>
           <motion.span
             key={TAGLINES[index]}
             initial={{
@@ -54,7 +54,7 @@ export function HeroTaglines() {
               duration: 0.8,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="col-start-1 row-start-1 inline-block origin-center text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl"
+            className="hero-tagline col-start-1 row-start-1 inline-block origin-center bg-gradient-to-r from-[#38bdf8] via-[#a5f3fc] to-white bg-clip-text text-2xl font-semibold leading-tight tracking-tight text-transparent drop-shadow-[0_0_12px_rgba(56,189,248,.18)] sm:text-3xl lg:text-4xl"
           >
             {TAGLINES[index]}
           </motion.span>

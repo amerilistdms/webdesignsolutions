@@ -1,130 +1,148 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Check, Loader2 } from "lucide-react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 import Link from "next/link";
-import { useCallback, useMemo, useState } from "react";
-import {
-  budgetOptions,
-  serviceOptions,
-  timelineOptions,
-  wizardSteps,
-} from "./get-started-data";
+import { useRef, useState } from "react";
+import { serviceOptions } from "./get-started-data";
+
+gsap.registerPlugin(useGSAP);
+
+const WIZARD_SERVICES = [
+  { id: "web-development", icon: "◈", title: "Web Design & Dev", desc: "Website or web app" },
+  { id: "e-commerce", icon: "◉", title: "E-Commerce", desc: "Online store" },
+  { id: "seo", icon: "◎", title: "SEO", desc: "Search rankings" },
+  { id: "email-marketing", icon: "◫", title: "Email Marketing", desc: "Campaigns & automation" },
+  { id: "social-media", icon: "◬", title: "Social Media", desc: "Management & ads" },
+  { id: "graphic-design", icon: "◭", title: "Branding & Design", desc: "Logo & identity" },
+  { id: "landing-pages", icon: "◮", title: "Digital Marketing", desc: "PPC & paid ads" },
+  { id: "hosting", icon: "◲", title: "Hosting & Support", desc: "Infra & maintenance" },
+  { id: "other", icon: "◌", title: "Other", desc: "Something else entirely" },
+] as const;
+
+const TIMELINES = [
+  { id: "asap", label: "ASAP", sub: "I needed it yesterday" },
+  { id: "1-3", label: "1–3 Months", sub: "Reasonable runway" },
+  { id: "3-6", label: "3–6 Months", sub: "We have time to do it right" },
+  { id: "6plus", label: "6+ Months", sub: "Long-term engagement" },
+] as const;
+
+const BUDGETS = [
+  { id: "under1", label: "Less than $1K", sub: "Just getting started" },
+  { id: "1-5", label: "$1K – $5K", sub: "Small project" },
+  { id: "5-10", label: "$5K – $10K", sub: "Mid-range scope" },
+  { id: "10plus", label: "More than $10K", sub: "Full-scale project" },
+  { id: "notsure", label: "Not Sure", sub: "Help me figure it out" },
+] as const;
+
+const STEP_LABELS = ["Project", "Timeline", "Budget", "Contact"] as const;
+const TOTAL_STEPS = 4;
 
 type ContactForm = {
-  firstName: string;
-  lastName: string;
-  company: string;
+  name: string;
   email: string;
+  company: string;
   phone: string;
-  phoneExt: string;
-  notes: string;
+  message: string;
 };
 
-const initialContact: ContactForm = {
-  firstName: "",
-  lastName: "",
-  company: "",
-  email: "",
-  phone: "",
-  phoneExt: "",
-  notes: "",
-};
-
-const stepEase = [0.22, 1, 0.36, 1] as const;
-
-function FieldLabel({ children, required }: { children: string; required?: boolean }) {
-  return (
-    <label className="mb-2 block text-sm font-medium text-white/85">
-      {children}
-      {required ? <span className="text-[var(--color-accent)]"> *</span> : null}
-    </label>
-  );
+function serviceLabels(ids: string[], otherDesc: string) {
+  return ids.map((id) => {
+    if (id === "other") {
+      return otherDesc.trim() ? `Other: ${otherDesc.trim()}` : "Other";
+    }
+    const wizard = WIZARD_SERVICES.find((s) => s.id === id);
+    if (wizard) return wizard.title;
+    const option = serviceOptions.find((s) => s.id === id);
+    return option?.label ?? id;
+  });
 }
 
-const inputClass = "get-started-input";
+function splitName(full: string) {
+  const parts = full.trim().split(/\s+/).filter(Boolean);
+  const firstName = parts[0] ?? "";
+  const lastName = parts.slice(1).join(" ") || firstName;
+  return { firstName, lastName };
+}
 
 export function GetStartedWizard() {
   const [step, setStep] = useState(1);
-  const [services, setServices] = useState<string[]>([]);
-  const [timeline, setTimeline] = useState<string | null>(null);
-  const [budget, setBudget] = useState<string | null>(null);
-  const [contact, setContact] = useState<ContactForm>(initialContact);
-  const [error, setError] = useState<string | null>(null);
-  const [submitting, setSubmitting] = useState(false);
+  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const [otherDesc, setOtherDesc] = useState("");
+  const [timeline, setTimeline] = useState("");
+  const [budget, setBudget] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [form, setForm] = useState<ContactForm>({
+    name: "",
+    email: "",
+    company: "",
+    phone: "",
+    message: "",
+  });
 
-  const progress = (step / wizardSteps.length) * 100;
-  const currentMeta = wizardSteps[step - 1];
+  const contentRef = useRef<HTMLDivElement>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
 
-  const toggleService = useCallback((id: string) => {
-    setServices((prev) =>
-      prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id],
-    );
-  }, []);
-
-  const updateContact = useCallback(
-    (field: keyof ContactForm, value: string) => {
-      setContact((prev) => ({ ...prev, [field]: value }));
+  useGSAP(
+    () => {
+      if (progressRef.current) {
+        gsap.to(progressRef.current, {
+          width: `${((step - 1) / (TOTAL_STEPS - 1)) * 100}%`,
+          duration: 0.6,
+          ease: "power3.out",
+        });
+      }
     },
-    [],
+    { dependencies: [step], scope: rootRef },
   );
 
-  const validateStep = useCallback((): string | null => {
-    if (step === 1 && services.length === 0) {
-      return "Select at least one service to continue.";
-    }
-    if (step === 2 && !timeline) {
-      return "Choose a project timeline.";
-    }
-    if (step === 3 && !budget) {
-      return "Choose a budget range (or select Not sure).";
-    }
-    if (step === 4) {
-      if (!contact.firstName.trim()) return "First name is required.";
-      if (!contact.lastName.trim()) return "Last name is required.";
-      if (!contact.email.trim()) return "Email is required.";
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact.email)) {
-        return "Enter a valid email address.";
-      }
-      if (!contact.phone.trim()) return "Phone is required.";
-    }
-    return null;
-  }, [step, services.length, timeline, budget, contact]);
-
-  const goNext = useCallback(() => {
-    const message = validateStep();
-    if (message) {
-      setError(message);
+  const goTo = (next: number) => {
+    if (!contentRef.current) {
+      setStep(next);
+      setError(null);
       return;
     }
-    setError(null);
-    setStep((s) => Math.min(s + 1, wizardSteps.length));
-  }, [validateStep]);
 
-  const goPrev = useCallback(() => {
-    setError(null);
-    setStep((s) => Math.max(s - 1, 1));
-  }, []);
+    gsap.to(contentRef.current, {
+      opacity: 0,
+      y: 20,
+      duration: 0.25,
+      ease: "power2.in",
+      onComplete: () => {
+        setStep(next);
+        setError(null);
+        gsap.fromTo(
+          contentRef.current,
+          { opacity: 0, y: -20 },
+          { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" },
+        );
+      },
+    });
+  };
 
-  const selectedSummary = useMemo(() => {
-    const serviceLabels = serviceOptions
-      .filter((s) => services.includes(s.id))
-      .map((s) => s.label);
-    const timelineLabel = timelineOptions.find((t) => t.id === timeline)?.label;
-    const budgetLabel = budgetOptions.find((b) => b.id === budget)?.label;
-    return { serviceLabels, timelineLabel, budgetLabel };
-  }, [services, timeline, budget]);
+  const toggleService = (id: string) => {
+    setSelectedServices((prev) =>
+      prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id],
+    );
+  };
+
+  const canContinueStep1 =
+    selectedServices.length > 0 &&
+    (!selectedServices.includes("other") || otherDesc.trim().length > 0);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const message = validateStep();
-    if (message) {
-      setError(message);
+    setError(null);
+
+    const { firstName, lastName } = splitName(form.name);
+    if (!firstName || !form.email.trim() || !form.phone.trim()) {
+      setError("Name, email, and phone are required.");
       return;
     }
 
-    setError(null);
     setSubmitting(true);
 
     try {
@@ -132,10 +150,15 @@ export function GetStartedWizard() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          services: selectedSummary.serviceLabels,
-          timeline: selectedSummary.timelineLabel,
-          budget: selectedSummary.budgetLabel,
-          ...contact,
+          services: serviceLabels(selectedServices, otherDesc),
+          timeline: TIMELINES.find((t) => t.id === timeline)?.label ?? timeline,
+          budget: BUDGETS.find((b) => b.id === budget)?.label ?? budget,
+          firstName,
+          lastName,
+          company: form.company.trim(),
+          email: form.email.trim(),
+          phone: form.phone.trim(),
+          notes: form.message.trim(),
         }),
       });
 
@@ -144,7 +167,25 @@ export function GetStartedWizard() {
         throw new Error(data.error ?? "Something went wrong. Please try again.");
       }
 
-      setSubmitted(true);
+      if (!contentRef.current) {
+        setSubmitted(true);
+        return;
+      }
+
+      gsap.to(contentRef.current, {
+        opacity: 0,
+        y: 20,
+        duration: 0.3,
+        ease: "power2.in",
+        onComplete: () => {
+          setSubmitted(true);
+          gsap.fromTo(
+            contentRef.current,
+            { opacity: 0, scale: 0.96 },
+            { opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" },
+          );
+        },
+      });
     } catch (err) {
       setError(err instanceof Error ? err.message : "Submission failed.");
     } finally {
@@ -152,340 +193,353 @@ export function GetStartedWizard() {
     }
   };
 
-  if (submitted) {
-    return (
-      <motion.div
-        initial={false}
-        animate={{ opacity: 1, scale: 1 }}
-        className="get-started-wizard-glass"
-      >
-        <div className="get-started-wizard-inner p-10 text-center sm:p-14">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-[var(--color-accent)]/30 bg-[var(--color-accent)]/15 text-[var(--color-accent)]">
-            <Check className="h-8 w-8" strokeWidth={2.5} />
-          </div>
-          <h2 className="mt-6 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-            Thank you—we received your request
-          </h2>
-          <p className="mx-auto mt-4 max-w-md text-white/65 leading-relaxed">
-            A member of our team will reach out shortly, usually within one business
-            day. We&apos;re excited to learn more about your project.
-          </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/"
-              className="inline-flex rounded-full bg-[var(--color-accent)] px-8 py-3 text-sm font-semibold text-[var(--color-nav)] transition hover:brightness-110"
-            >
-              Back to home
-            </Link>
-            <Link
-              href="/portfolio"
-              className="inline-flex rounded-full border border-white/15 px-8 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
-            >
-              View portfolio
-            </Link>
-          </div>
-        </div>
-      </motion.div>
-    );
-  }
+  const serviceSummary = serviceLabels(selectedServices, otherDesc).join(", ");
 
   return (
-    <div className="get-started-wizard-glass">
-      <div className="get-started-wizard-inner get-started-divider border-b px-6 py-6 sm:px-10 sm:py-8">
-        <div className="flex items-center justify-between gap-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--color-accent)]">
-            Step {step} of {wizardSteps.length}
-          </p>
-          <div className="hidden gap-1 sm:flex">
-            {wizardSteps.map((s) => (
-              <span
-                key={s.number}
-                className={`h-1.5 w-8 rounded-full transition ${
-                  s.number <= step ? "bg-[var(--color-accent)]" : "bg-black/10"
-                }`}
-                aria-hidden
-              />
-            ))}
+    <div ref={rootRef} className="get-started-flow">
+      <div className="get-started-flow__bg-orb get-started-flow__bg-orb--primary" aria-hidden />
+      <div className="get-started-flow__bg-orb get-started-flow__bg-orb--secondary" aria-hidden />
+      <div className="get-started-flow__bg-orb get-started-flow__bg-orb--accent" aria-hidden />
+
+      {!submitted ? (
+        <>
+          <div className="get-started-flow__top-bar">
+            <span className="get-started-flow__step-counter">
+              Step <strong>{step}</strong> of <strong>{TOTAL_STEPS}</strong>
+            </span>
           </div>
-        </div>
-        <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-white/10">
-          <motion.div
-            className="h-full rounded-full bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-strong)]"
-            initial={false}
-            animate={{ width: `${progress}%` }}
-            transition={{ duration: 0.45, ease: stepEase }}
-          />
-        </div>
-        <h2 className="mt-6 text-xl font-semibold tracking-tight text-white sm:text-2xl">
-          {currentMeta.title}
-        </h2>
-        <p className="mt-2 text-sm text-white/55">{currentMeta.subtitle}</p>
-      </div>
 
-      <form
-        onSubmit={step === 4 ? handleSubmit : (e) => e.preventDefault()}
-        className="get-started-wizard-inner px-6 py-8 sm:px-10 sm:py-10"
-      >
-        <AnimatePresence mode="wait">
-          {step === 1 ? (
-            <motion.div
-              key="step-1"
-              initial={false}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -16 }}
-              transition={{ duration: 0.35, ease: stepEase }}
-              className="grid gap-3 sm:grid-cols-2"
-            >
-              {serviceOptions.map((service) => {
-                const selected = services.includes(service.id);
-                const Icon = service.icon;
-                return (
-                  <button
-                    key={service.id}
-                    type="button"
-                    onClick={() => toggleService(service.id)}
-                    className={`get-started-chip group flex items-center gap-4 rounded-2xl p-4 text-left ${
-                      selected ? "get-started-chip--selected" : ""
+          <div className="get-started-flow__progress-track">
+            <div ref={progressRef} className="get-started-flow__progress-fill" />
+          </div>
+
+          <nav className="get-started-flow__steps-nav" aria-label="Form progress">
+            {STEP_LABELS.map((label, index) => (
+              <span key={label} className="contents">
+                <span
+                  className={`get-started-flow__step-dot ${
+                    step === index + 1
+                      ? "get-started-flow__step-dot--active"
+                      : step > index + 1
+                        ? "get-started-flow__step-dot--done"
+                        : ""
+                  }`}
+                  aria-hidden
+                >
+                  {step > index + 1 ? "✓" : index + 1}
+                </span>
+                {index < STEP_LABELS.length - 1 ? (
+                  <span
+                    className={`get-started-flow__step-line ${
+                      step > index + 1 ? "get-started-flow__step-line--done" : ""
                     }`}
-                    aria-pressed={selected}
+                    aria-hidden
+                  />
+                ) : null}
+              </span>
+            ))}
+          </nav>
+        </>
+      ) : null}
+
+      <div className="get-started-flow__main">
+        <div ref={contentRef}>
+          {error ? <p className="get-started-flow__error">{error}</p> : null}
+
+          {submitted ? (
+            <div className="get-started-flow__success">
+              <div className="get-started-flow__success-icon">✓</div>
+              <h1 className="get-started-flow__success-title">
+                You&apos;re in.
+                <br />
+                <span>We&apos;ll be in touch.</span>
+              </h1>
+              <p className="get-started-flow__success-sub">
+                Your brief was received. Someone from our team will reach out within
+                one business day to schedule a discovery call.
+              </p>
+              <Link href="/" className="get-started-flow__success-back">
+                Back to home →
+              </Link>
+            </div>
+          ) : null}
+
+          {step === 1 && !submitted ? (
+            <>
+              <h1 className="get-started-flow__title">
+                What type of
+                <br />
+                <span>project</span> is it?
+              </h1>
+              <p className="get-started-flow__sub">
+                Select all that apply — you can pick more than one.
+              </p>
+              <div className="get-started-flow__services-grid">
+                {WIZARD_SERVICES.map((service) => {
+                  const isOther = service.id === "other";
+                  const isSelected = selectedServices.includes(service.id);
+                  return (
+                    <div
+                      key={service.id}
+                      role="button"
+                      tabIndex={0}
+                      aria-pressed={isSelected}
+                      className={`get-started-flow__service-card ${
+                        isSelected ? "get-started-flow__service-card--selected" : ""
+                      }`}
+                      onClick={(e) => {
+                        if (
+                          (e.target as HTMLElement).closest(
+                            "textarea, input, label",
+                          )
+                        ) {
+                          return;
+                        }
+                        toggleService(service.id);
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.target instanceof HTMLTextAreaElement) return;
+                        if (e.key === " " || e.key === "Enter") {
+                          e.preventDefault();
+                          toggleService(service.id);
+                        }
+                      }}
+                    >
+                      <span className="get-started-flow__card-icon">{service.icon}</span>
+                      <span className="get-started-flow__card-body">
+                        <span className="get-started-flow__card-head">
+                          <span className="get-started-flow__card-title">
+                            {service.title}
+                          </span>
+                          <span className="get-started-flow__card-check">
+                            {isSelected ? "✓" : ""}
+                          </span>
+                        </span>
+                        <span className="get-started-flow__card-desc">{service.desc}</span>
+                        {isOther && isSelected ? (
+                          <textarea
+                            className="get-started-flow__other-input"
+                            rows={3}
+                            placeholder="Briefly describe what you need..."
+                            value={otherDesc}
+                            onClick={(e) => e.stopPropagation()}
+                            onKeyDown={(e) => e.stopPropagation()}
+                            onChange={(e) => setOtherDesc(e.target.value)}
+                          />
+                        ) : null}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="get-started-flow__nav-row">
+                <span />
+                <button
+                  type="button"
+                  className="get-started-flow__btn-next"
+                  disabled={!canContinueStep1}
+                  onClick={() => goTo(2)}
+                >
+                  Continue <span aria-hidden>→</span>
+                </button>
+              </div>
+            </>
+          ) : null}
+
+          {step === 2 && !submitted ? (
+            <>
+              <h1 className="get-started-flow__title">
+                What&apos;s your
+                <br />
+                <span>timeline?</span>
+              </h1>
+              <p className="get-started-flow__sub">When do you need this live?</p>
+              <div className="get-started-flow__options-grid">
+                {TIMELINES.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    className={`get-started-flow__option-card ${
+                      timeline === item.id ? "get-started-flow__option-card--selected" : ""
+                    }`}
+                    onClick={() => setTimeline(item.id)}
                   >
-                    <span className="get-started-chip-icon flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-[var(--color-accent)]">
-                      <Icon className="h-5 w-5" strokeWidth={1.75} />
+                    <span className="get-started-flow__option-copy">
+                      <span className="get-started-flow__option-label">{item.label}</span>
+                      <span className="get-started-flow__option-sub">{item.sub}</span>
                     </span>
-                    <span className="font-semibold text-white/90">{service.label}</span>
-                    {selected ? (
-                      <Check className="ml-auto h-5 w-5 shrink-0 text-[var(--color-accent)]" />
-                    ) : null}
+                    <span className="get-started-flow__option-radio" aria-hidden />
                   </button>
-                );
-              })}
-            </motion.div>
+                ))}
+              </div>
+              <div className="get-started-flow__nav-row">
+                <button type="button" className="get-started-flow__btn-back" onClick={() => goTo(1)}>
+                  ← Back
+                </button>
+                <button
+                  type="button"
+                  className="get-started-flow__btn-next"
+                  disabled={!timeline}
+                  onClick={() => goTo(3)}
+                >
+                  Continue <span aria-hidden>→</span>
+                </button>
+              </div>
+            </>
           ) : null}
 
-          {step === 2 ? (
-            <motion.div
-              key="step-2"
-              initial={false}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -16 }}
-              transition={{ duration: 0.35, ease: stepEase }}
-              className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
-            >
-              {timelineOptions.map((option) => {
-                const selected = timeline === option.id;
-                return (
+          {step === 3 && !submitted ? (
+            <>
+              <h1 className="get-started-flow__title">
+                What&apos;s your
+                <br />
+                <span>budget?</span>
+              </h1>
+              <p className="get-started-flow__sub">
+                This helps us scope the right solution for you.
+              </p>
+              <div className="get-started-flow__options-grid get-started-flow__budget-grid">
+                {BUDGETS.map((item) => (
                   <button
-                    key={option.id}
+                    key={item.id}
                     type="button"
-                    onClick={() => setTimeline(option.id)}
-                    className={`get-started-chip rounded-2xl p-6 text-center ${
-                      selected ? "get-started-chip--selected" : ""
+                    className={`get-started-flow__option-card ${
+                      budget === item.id ? "get-started-flow__option-card--selected" : ""
                     }`}
-                    aria-pressed={selected}
+                    onClick={() => setBudget(item.id)}
                   >
-                    <p className="text-2xl font-semibold tracking-tight text-white">
-                      {option.label}
-                    </p>
-                    <p className="mt-1 text-xs font-medium uppercase tracking-widest text-white/45">
-                      {option.short}
-                    </p>
+                    <span className="get-started-flow__option-copy">
+                      <span className="get-started-flow__option-label">{item.label}</span>
+                      <span className="get-started-flow__option-sub">{item.sub}</span>
+                    </span>
+                    <span className="get-started-flow__option-radio" aria-hidden />
                   </button>
-                );
-              })}
-            </motion.div>
+                ))}
+              </div>
+              <div className="get-started-flow__nav-row">
+                <button type="button" className="get-started-flow__btn-back" onClick={() => goTo(2)}>
+                  ← Back
+                </button>
+                <button
+                  type="button"
+                  className="get-started-flow__btn-next"
+                  disabled={!budget}
+                  onClick={() => goTo(4)}
+                >
+                  Continue <span aria-hidden>→</span>
+                </button>
+              </div>
+            </>
           ) : null}
 
-          {step === 3 ? (
-            <motion.div
-              key="step-3"
-              initial={false}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -16 }}
-              transition={{ duration: 0.35, ease: stepEase }}
-              className="grid gap-3 sm:grid-cols-2"
-            >
-              {budgetOptions.map((option) => {
-                const selected = budget === option.id;
-                return (
-                  <button
-                    key={option.id}
-                    type="button"
-                    onClick={() => setBudget(option.id)}
-                    className={`get-started-chip rounded-2xl px-6 py-5 text-center text-lg font-semibold text-white/90 ${
-                      selected ? "get-started-chip--selected" : ""
-                    }`}
-                    aria-pressed={selected}
-                  >
-                    {option.label}
-                  </button>
-                );
-              })}
-            </motion.div>
-          ) : null}
-
-          {step === 4 ? (
-            <motion.div
-              key="step-4"
-              initial={false}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -16 }}
-              transition={{ duration: 0.35, ease: stepEase }}
-              className="space-y-6"
-            >
-              {(selectedSummary.serviceLabels.length > 0 || selectedSummary.timelineLabel) && (
-                <div className="get-started-summary rounded-2xl p-5 text-sm">
-                  <p className="font-semibold text-white">Your selections</p>
-                  <ul className="mt-2 space-y-1 text-white/60">
-                    {selectedSummary.serviceLabels.length > 0 ? (
-                      <li>
-                        <span className="font-medium text-white/85">Services: </span>
-                        {selectedSummary.serviceLabels.join(", ")}
-                      </li>
-                    ) : null}
-                    {selectedSummary.timelineLabel ? (
-                      <li>
-                        <span className="font-medium text-white/85">Timeline: </span>
-                        {selectedSummary.timelineLabel}
-                      </li>
-                    ) : null}
-                    {selectedSummary.budgetLabel ? (
-                      <li>
-                        <span className="font-medium text-white/85">Budget: </span>
-                        {selectedSummary.budgetLabel}
-                      </li>
-                    ) : null}
-                  </ul>
-                </div>
-              )}
-
-              <div className="grid gap-5 sm:grid-cols-2">
+          {step === 4 && !submitted ? (
+            <>
+              <h1 className="get-started-flow__title">
+                Almost there —
+                <br />
+                <span>tell us about you.</span>
+              </h1>
+              <p className="get-started-flow__sub">
+                We&apos;ll reach out within one business day to kick things off.
+              </p>
+              <div className="get-started-flow__summary">
                 <div>
-                  <FieldLabel required>First name</FieldLabel>
-                  <input
-                    type="text"
-                    className={inputClass}
-                    value={contact.firstName}
-                    onChange={(e) => updateContact("firstName", e.target.value)}
-                    autoComplete="given-name"
-                    required
-                  />
+                  <p className="get-started-flow__summary-key">Services</p>
+                  <p className="get-started-flow__summary-val">{serviceSummary}</p>
                 </div>
                 <div>
-                  <FieldLabel required>Last name</FieldLabel>
-                  <input
-                    type="text"
-                    className={inputClass}
-                    value={contact.lastName}
-                    onChange={(e) => updateContact("lastName", e.target.value)}
-                    autoComplete="family-name"
-                    required
-                  />
-                </div>
-                <div className="sm:col-span-2">
-                  <FieldLabel>Company</FieldLabel>
-                  <input
-                    type="text"
-                    className={inputClass}
-                    value={contact.company}
-                    onChange={(e) => updateContact("company", e.target.value)}
-                    autoComplete="organization"
-                  />
+                  <p className="get-started-flow__summary-key">Timeline</p>
+                  <p className="get-started-flow__summary-val">
+                    {TIMELINES.find((t) => t.id === timeline)?.label}
+                  </p>
                 </div>
                 <div>
-                  <FieldLabel required>Email</FieldLabel>
-                  <input
-                    type="email"
-                    className={inputClass}
-                    value={contact.email}
-                    onChange={(e) => updateContact("email", e.target.value)}
-                    autoComplete="email"
-                    required
-                  />
-                </div>
-                <div>
-                  <FieldLabel required>Phone</FieldLabel>
-                  <input
-                    type="tel"
-                    className={inputClass}
-                    value={contact.phone}
-                    onChange={(e) => updateContact("phone", e.target.value)}
-                    autoComplete="tel"
-                    required
-                  />
-                </div>
-                <div>
-                  <FieldLabel>Phone ext.</FieldLabel>
-                  <input
-                    type="text"
-                    className={inputClass}
-                    value={contact.phoneExt}
-                    onChange={(e) => updateContact("phoneExt", e.target.value)}
-                  />
-                </div>
-                <div className="sm:col-span-2">
-                  <FieldLabel>Notes / comments</FieldLabel>
-                  <textarea
-                    className={`${inputClass} min-h-[120px] resize-y`}
-                    value={contact.notes}
-                    onChange={(e) => updateContact("notes", e.target.value)}
-                    rows={4}
-                  />
+                  <p className="get-started-flow__summary-key">Budget</p>
+                  <p className="get-started-flow__summary-val">
+                    {BUDGETS.find((b) => b.id === budget)?.label}
+                  </p>
                 </div>
               </div>
-            </motion.div>
+              <form onSubmit={handleSubmit}>
+                <div className="get-started-flow__form-grid">
+                  <div className="get-started-flow__field get-started-flow__field--full">
+                    <label htmlFor="gs-name">Your name *</label>
+                    <input
+                      id="gs-name"
+                      type="text"
+                      required
+                      placeholder="John Smith"
+                      value={form.name}
+                      onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    />
+                  </div>
+                  <div className="get-started-flow__field">
+                    <label htmlFor="gs-email">Email *</label>
+                    <input
+                      id="gs-email"
+                      type="email"
+                      required
+                      placeholder="john@company.com"
+                      value={form.email}
+                      onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    />
+                  </div>
+                  <div className="get-started-flow__field">
+                    <label htmlFor="gs-phone">Phone *</label>
+                    <input
+                      id="gs-phone"
+                      type="tel"
+                      required
+                      placeholder="1-800-000-0000"
+                      value={form.phone}
+                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                    />
+                  </div>
+                  <div className="get-started-flow__field get-started-flow__field--full">
+                    <label htmlFor="gs-company">Company</label>
+                    <input
+                      id="gs-company"
+                      type="text"
+                      placeholder="Your Company Inc."
+                      value={form.company}
+                      onChange={(e) => setForm({ ...form, company: e.target.value })}
+                    />
+                  </div>
+                  <div className="get-started-flow__field get-started-flow__field--full">
+                    <label htmlFor="gs-message">Tell us about your project</label>
+                    <textarea
+                      id="gs-message"
+                      rows={4}
+                      placeholder="Goals, audience, timeline details..."
+                      value={form.message}
+                      onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    />
+                  </div>
+                </div>
+                <div className="get-started-flow__nav-row">
+                  <button type="button" className="get-started-flow__btn-back" onClick={() => goTo(3)}>
+                    ← Back
+                  </button>
+                  <button
+                    type="submit"
+                    className="get-started-flow__btn-next"
+                    disabled={submitting || !form.name || !form.email || !form.phone}
+                  >
+                    {submitting ? "Sending…" : "Send my brief"} <span aria-hidden>↗</span>
+                  </button>
+                </div>
+              </form>
+            </>
           ) : null}
-        </AnimatePresence>
-
-        {error ? (
-          <p
-            className="mt-6 rounded-xl border border-red-400/30 bg-red-500/10 px-4 py-3 text-sm text-red-200"
-            role="alert"
-          >
-            {error}
-          </p>
-        ) : null}
-
-        <div className="get-started-divider mt-10 flex flex-wrap items-center justify-between gap-4 border-t pt-8">
-          {step > 1 ? (
-            <button
-              type="button"
-              onClick={goPrev}
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white/90 backdrop-blur-sm transition hover:border-white/25 hover:bg-white/10"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Previous
-            </button>
-          ) : (
-            <span />
-          )}
-
-          {step < 4 ? (
-            <button
-              type="button"
-              onClick={goNext}
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-8 py-3 text-sm font-semibold text-[var(--color-nav)] transition hover:brightness-110"
-            >
-              Next
-              <ArrowRight className="h-4 w-4" />
-            </button>
-          ) : (
-            <button
-              type="submit"
-              disabled={submitting}
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-8 py-3 text-sm font-semibold text-[var(--color-nav)] transition hover:brightness-110 disabled:opacity-70"
-            >
-              {submitting ? (
-                <>
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                  Sending…
-                </>
-              ) : (
-                "Submit request"
-              )}
-            </button>
-          )}
         </div>
-      </form>
+      </div>
+
+      {!submitted ? (
+        <p className="get-started-flow__fine-print">
+          By submitting, you agree we may contact you about your project. We never sell
+          your information.
+        </p>
+      ) : null}
     </div>
   );
 }

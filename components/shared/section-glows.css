@@ -1,0 +1,73 @@
+.section-glows {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.section-glows__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+.section-glows__orb--1 {
+  top: -12%;
+  right: -6%;
+  width: min(420px, 55vw);
+  height: min(420px, 55vw);
+  background: radial-gradient(
+    circle,
+    rgba(56, 189, 248, 0.22) 0%,
+    transparent 70%
+  );
+}
+
+.section-glows__orb--2 {
+  bottom: -8%;
+  left: -8%;
+  width: min(380px, 50vw);
+  height: min(380px, 50vw);
+  background: radial-gradient(
+    circle,
+    rgba(7, 78, 185, 0.32) 0%,
+    transparent 70%
+  );
+}
+
+.section-glows__orb--3 {
+  top: 35%;
+  left: 30%;
+  width: min(280px, 40vw);
+  height: min(280px, 40vw);
+  background: radial-gradient(
+    circle,
+    rgba(129, 233, 47, 0.1) 0%,
+    transparent 70%
+  );
+}
+
+.section-glows--rich .section-glows__orb--4 {
+  top: 55%;
+  right: 18%;
+  width: min(320px, 42vw);
+  height: min(320px, 42vw);
+  background: radial-gradient(
+    circle,
+    rgba(56, 189, 248, 0.14) 0%,
+    transparent 68%
+  );
+}
+
+.section-glows--rich .section-glows__orb--5 {
+  top: 8%;
+  left: 12%;
+  width: min(240px, 35vw);
+  height: min(240px, 35vw);
+  background: radial-gradient(
+    circle,
+    rgba(14, 165, 233, 0.18) 0%,
+    transparent 70%
+  );
+}

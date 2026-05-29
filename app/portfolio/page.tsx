@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import { SectionGlows } from "../../components/shared/section-glows";
 import { PortfolioFooterCta } from "../../components/portfolio/portfolio-footer-cta";
-import { PortfolioGallery } from "../../components/portfolio/portfolio-gallery";
 import { PortfolioHero } from "../../components/portfolio/portfolio-hero";
+import { PortfolioPageSections } from "../../components/portfolio/portfolio-page-sections";
 
 export const metadata: Metadata = {
   title: "Portfolio",
@@ -13,7 +14,12 @@ export default function PortfolioPage() {
   return (
     <>
       <PortfolioHero />
-      <PortfolioGallery />
+      <div className="relative overflow-hidden bg-[#040c1c]">
+        <SectionGlows density="rich" className="opacity-80" />
+        <div className="relative z-[1]">
+          <PortfolioPageSections />
+        </div>
+      </div>
       <PortfolioFooterCta />
     </>
   );

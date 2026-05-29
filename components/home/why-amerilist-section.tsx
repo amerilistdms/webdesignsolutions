@@ -93,17 +93,6 @@ function HeroSection() {
           opacity: 0.9;
         }
 
-        .parallax-grid {
-          position: absolute;
-          inset: 0;
-          background-image:
-            linear-gradient(rgba(56, 189, 248, 0.14) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(56, 189, 248, 0.14) 1px, transparent 1px);
-          background-size: 64px 64px;
-          mask-image: linear-gradient(105deg, transparent 0%, black 18%, black 88%, transparent 100%);
-          opacity: 0.72;
-        }
-
         .parallax-orb {
           position: absolute;
           border-radius: 50%;
@@ -379,7 +368,6 @@ function HeroSection() {
 
       <section className="section-light parallax-hero relative z-10">
         <div className="parallax-bg">
-          <div className="parallax-grid" aria-hidden />
           <div className="parallax-dots" aria-hidden />
           <div className="parallax-orb parallax-orb-a" aria-hidden />
           <div className="parallax-orb parallax-orb-b" aria-hidden />

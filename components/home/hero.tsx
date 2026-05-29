@@ -1,43 +1,91 @@
 "use client";
 
 import Link from "next/link";
-import { useRef } from "react";
-import { HeroParallaxBg } from "./hero-parallax-bg";
+import { useId, useRef, useState } from "react";
 import { HeroTaglines } from "./hero-taglines";
-import { useSectionParallaxLift } from "./use-section-parallax-lift";
+import { useHomeHeroPinScroll } from "./use-home-hero-pin-scroll";
+import "./home-hero.css";
 
 export function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { bg, fg } = useSectionParallaxLift(sectionRef, 0.045, 0.2);
+  const [altBackground, setAltBackground] = useState(false);
+  const switchId = useId();
+  const pinRef = useRef<HTMLDivElement>(null);
+  const auroraRef = useRef<HTMLDivElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const bottomFadeRef = useRef<HTMLDivElement>(null);
+
+  useHomeHeroPinScroll({
+    pinTarget: pinRef,
+    aurora: auroraRef,
+    stage: stageRef,
+    bottomFade: bottomFadeRef,
+  });
 
   return (
-    <section ref={sectionRef} className="site-hero">
-      <HeroParallaxBg bgLift={bg} />
+    <section className="home-hero-outer" aria-label="Amerilist homepage hero">
       <div
-        className="site-hero__content flex flex-col justify-center will-change-transform"
-        style={{ transform: `translate3d(0, ${fg}px, 0)` }}
+        ref={pinRef}
+        className={`home-hero-wrapper home-hero-wrapper--fullscreen${
+          altBackground ? " home-hero-wrapper--alt" : ""
+        }`}
       >
-        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-white sm:text-sm">
-          Amerilist Web Design Solutions
-        </p>
-        <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
-          Data-driven digital solutions
-        </h1>
-        <HeroTaglines />
-        <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-          <Link
-            href="/get-started"
-            className="inline-flex items-center justify-center rounded-full bg-[var(--color-accent)] px-7 py-3.5 text-sm font-semibold text-[var(--color-nav)] shadow-lg shadow-sky-500/25 transition hover:brightness-110"
-          >
-            Get started
-          </Link>
-          <Link
-            href="/services"
-            className="inline-flex items-center justify-center rounded-full border border-white/25 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur transition hover:border-white/40 hover:bg-white/10"
-          >
-            Explore services
-          </Link>
+      <div ref={auroraRef} className="home-hero-aurora" aria-hidden>
+        <div className="home-hero-stripes" />
+      </div>
+      <div className="home-hero-scrim" aria-hidden />
+      <div ref={bottomFadeRef} className="home-hero-bottom-fade" aria-hidden />
+
+      <div ref={stageRef} className="home-hero-stage">
+        <div className="home-hero-content site-hero__content flex flex-col justify-center">
+          <h1 className="home-hero-title">
+            <span className="home-hero-title__bar" aria-hidden />
+            <span className="home-hero-glass-line" data-text="Amerilist">
+              Amerilist
+            </span>
+            <span
+              className="home-hero-glass-line home-hero-title__accent"
+              data-text="Digital"
+            >
+              Digital
+            </span>
+            <span
+              className="home-hero-glass-line home-hero-title__muted"
+              data-text="Experiences"
+            >
+              Experiences
+            </span>
+          </h1>
+
+          <div className="home-hero-taglines">
+            <HeroTaglines />
+          </div>
+
+          <input
+            id={switchId}
+            type="checkbox"
+            className="home-hero-switch"
+            checked={altBackground}
+            onChange={(event) => setAltBackground(event.target.checked)}
+          />
+          <label htmlFor={switchId} className="home-hero-switch-label">
+            <span className="home-hero-switch-icon" aria-hidden>
+              →
+            </span>
+            <span>Switch background</span>
+          </label>
         </div>
+
+        <div className="home-hero-actions site-hero__content">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <Link href="/get-started" className="home-hero-btn">
+              Get started
+            </Link>
+            <Link href="/services" className="home-hero-btn">
+              Explore services
+            </Link>
+          </div>
+        </div>
+      </div>
       </div>
     </section>
   );

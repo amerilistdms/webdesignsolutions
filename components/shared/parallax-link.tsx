@@ -40,8 +40,8 @@ export function ParallaxLink({ href, children, className = "" }: ParallaxLinkPro
     );
 
     return () => {
+      tween.scrollTrigger?.kill(true);
       tween.kill();
-      tween.scrollTrigger?.kill();
     };
   }, []);
 

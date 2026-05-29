@@ -1,4 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
+"use client";
+
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SectionGlows } from "../shared/section-glows";
+import "./trust-marquee-section.css";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const MARQUEE_LOGOS = [
   "https://upload.wikimedia.org/wikipedia/commons/c/ca/Sony_logo.svg",
@@ -42,7 +51,7 @@ function LogoRow({ duplicate }: { duplicate?: boolean }) {
             <img
               src={src}
               alt={showAlt ? LOGO_ALTS[i] : ""}
-              className="max-h-[42px] max-w-[120px] object-contain opacity-[0.38] grayscale transition-[opacity,transform,filter] duration-200 ease-out hover:scale-105 hover:opacity-100 hover:grayscale-0"
+              className="max-h-[42px] max-w-[120px] object-contain opacity-90 transition-[opacity,transform] duration-200 ease-out hover:scale-105 hover:opacity-100"
               draggable={false}
             />
           </div>
@@ -53,28 +62,54 @@ function LogoRow({ duplicate }: { duplicate?: boolean }) {
 }
 
 export function TrustMarqueeSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const parallaxRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const parallax = parallaxRef.current;
+    if (!section || !parallax) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        parallax,
+        { y: "-10%" },
+        {
+          y: "10%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        },
+      );
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="section-light trust-section relative z-10 border-y border-black/5 bg-[var(--background)] py-16 sm:py-20 lg:py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <p className="text-center text-xs font-semibold uppercase tracking-[0.3em] text-[var(--foreground-muted)] sm:text-sm">
+    <section
+      ref={sectionRef}
+      className="trust-marquee-section"
+      aria-label="Trusted by leading brands"
+    >
+      <div ref={parallaxRef} className="trust-marquee-section__parallax" aria-hidden />
+      <SectionGlows density="rich" />
+
+      <div className="trust-marquee-section__inner mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <p className="trust-marquee-section__eyebrow sm:text-sm">
           Trusted by teams who expect more than pretty pages
         </p>
       </div>
 
       <div
-        className="logo-marquee relative mt-10 w-full overflow-hidden sm:mt-14"
+        className="trust-marquee-section__marquee logo-marquee relative mt-10 w-full overflow-hidden sm:mt-14"
         role="region"
         aria-label="Partner logos"
       >
-        <div
-          className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[var(--background)] to-transparent sm:w-28"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[var(--background)] to-transparent sm:w-28"
-          aria-hidden
-        />
-
         <div className="trust-marquee-track">
           <LogoRow />
           <LogoRow duplicate />

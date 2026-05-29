@@ -1,0 +1,225 @@
+.split-feature {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(6rem, 12vw, 8.75rem) clamp(1.5rem, 5vw, 5rem);
+  background: #0a1224;
+  color: #eff2f9;
+}
+
+.split-feature__inner {
+  display: grid;
+  max-width: 87.5rem;
+  margin: 0 auto;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 8vw, 6.25rem);
+  align-items: center;
+}
+
+.split-feature__inner--rev {
+  direction: rtl;
+}
+
+.split-feature__inner--rev > * {
+  direction: ltr;
+}
+
+.split-feature__img-wrap {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  background: #0f1b33;
+  will-change: transform, opacity, clip-path;
+}
+
+.split-feature__img-inner {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+
+.split-feature__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  filter: brightness(0.88) saturate(0.92);
+}
+
+.split-feature__badge {
+  position: absolute;
+  bottom: 1.75rem;
+  left: 1.75rem;
+  z-index: 2;
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  border-radius: 0.875rem;
+  background: rgba(4, 12, 28, 0.88);
+  padding: 1rem 1.375rem;
+  backdrop-filter: blur(16px);
+}
+
+.split-feature__stat-num {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #eff2f9;
+}
+
+.split-feature__stat-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.split-feature__stripe {
+  position: absolute;
+  top: 2.5rem;
+  right: 0;
+  width: 4px;
+  height: 5rem;
+  border-radius: 2px 0 0 2px;
+  background: var(--color-accent);
+}
+
+.split-feature__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1.25rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.split-feature__label::before {
+  content: "";
+  display: block;
+  width: 1.5rem;
+  height: 1px;
+  background: var(--color-accent);
+}
+
+.split-feature__title {
+  margin: 0 0 1.75rem;
+  font-size: clamp(2.25rem, 4vw, 3.75rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #eff2f9;
+}
+
+.split-feature__title span {
+  background: linear-gradient(90deg, #81e92f 0%, #38bdf8 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.split-feature__desc {
+  max-width: 30rem;
+  margin: 0 0 2.25rem;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #9da5c0;
+}
+
+.split-feature__items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 0 0 3rem;
+  padding: 0;
+  list-style: none;
+}
+
+.split-feature__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: #9da5c0;
+  transition: color 0.2s ease;
+}
+
+.split-feature__item:hover {
+  color: #eff2f9;
+}
+
+.split-feature__item-dot {
+  display: flex;
+  width: 1.375rem;
+  height: 1.375rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.125rem;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 50%;
+  background: rgba(56, 189, 248, 0.1);
+  transition: background 0.2s ease;
+}
+
+.split-feature__item:hover .split-feature__item-dot {
+  background: rgba(56, 189, 248, 0.22);
+}
+
+.split-feature__item-check {
+  font-size: 0.625rem;
+  color: var(--color-accent);
+}
+
+.split-feature__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  border-bottom: 1px solid rgba(239, 242, 249, 0.2);
+  padding-bottom: 0.25rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #eff2f9;
+  text-decoration: none;
+  transition:
+    gap 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.split-feature__cta:hover {
+  gap: 1rem;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .split-feature__img-wrap {
+    will-change: auto;
+  }
+}
+
+@media (max-width: 1000px) {
+  .split-feature__inner {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .split-feature__inner--rev {
+    direction: ltr;
+  }
+
+  .split-feature__img-wrap {
+    aspect-ratio: 16 / 9;
+  }
+}

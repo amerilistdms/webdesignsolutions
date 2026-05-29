@@ -22,17 +22,10 @@ function NavLinkDesktop({
   return (
     <Link
       href={href}
-      className={`group relative px-3 py-2 text-sm font-medium transition-colors ${
-        active ? "text-white" : "text-white hover:text-white"
-      }`}
+      className="main-nav-link rounded-full px-3.5 py-2 text-sm font-medium transition-colors duration-300"
+      data-active={active ? "true" : undefined}
     >
       {label}
-      <span
-        className={`pointer-events-none absolute bottom-0 left-3 right-3 h-0.5 origin-left rounded-full bg-[var(--color-accent)] transition-transform duration-200 ease-out ${
-          active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-        }`}
-        aria-hidden
-      />
     </Link>
   );
 }
@@ -50,8 +43,8 @@ export function MainNav({ scrolled }: MainNavProps) {
     };
   }, [open]);
 
-  const barSurface = scrolled
-    ? "border-white/10 bg-[var(--color-nav)]/76 backdrop-blur-xl supports-[backdrop-filter]:bg-[var(--color-nav)]/58 shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
+  const pillSurface = scrolled
+    ? "main-nav-bar--scrolled border-white/20 bg-[var(--color-nav)]/40 shadow-[0_8px_32px_rgba(0,0,0,0.12)] backdrop-blur-xl supports-[backdrop-filter]:bg-[var(--color-nav)]/28"
     : "border-transparent bg-transparent shadow-none";
 
   const mobilePanel = scrolled
@@ -59,10 +52,10 @@ export function MainNav({ scrolled }: MainNavProps) {
     : "border-white/15 bg-black/45 backdrop-blur-xl supports-[backdrop-filter]:bg-black/35";
 
   return (
-    <header
-      className={`border-b transition-[background-color,border-color,backdrop-filter,box-shadow] duration-300 ease-out ${barSurface}`}
-    >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-3 py-3 sm:px-5 lg:px-6">
+    <header className="border-0 bg-transparent shadow-none">
+      <div
+        className={`main-nav-bar mx-auto flex max-w-7xl items-center justify-between gap-4 rounded-full border px-3 py-2.5 transition-[background-color,border-color,backdrop-filter,box-shadow] duration-300 ease-out sm:px-4 ${pillSurface}`}
+      >
         <Link
           href="/"
           className="relative flex shrink-0 items-center gap-2 outline-offset-4"
@@ -73,7 +66,7 @@ export function MainNav({ scrolled }: MainNavProps) {
             alt="Amerilist Web Design"
             width={200}
             height={48}
-            className="h-9 w-auto sm:h-10"
+            className="h-8 w-auto sm:h-9"
             priority
           />
         </Link>
@@ -97,7 +90,7 @@ export function MainNav({ scrolled }: MainNavProps) {
 
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-lg border border-white/25 bg-white/5 p-2 text-white lg:hidden"
+          className="main-nav-menu-btn inline-flex items-center justify-center rounded-full border border-white/25 bg-white/5 p-2 text-white transition-[background-color,border-color] duration-300 lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           onClick={() => setOpen((v) => !v)}
@@ -138,9 +131,12 @@ export function MainNav({ scrolled }: MainNavProps) {
       </div>
 
       {open ? (
-        <div id="mobile-nav" className={`border-t lg:hidden ${mobilePanel}`}>
+        <div
+          id="mobile-nav"
+          className={`main-nav-mobile mt-2 overflow-hidden rounded-2xl border lg:hidden ${mobilePanel}`}
+        >
           <nav
-            className="mx-auto flex max-w-7xl flex-col gap-0.5 px-3 py-4 sm:px-5 lg:px-6"
+            className="flex flex-col gap-0.5 px-3 py-4"
             aria-label="Mobile primary"
           >
             {mainNavLinks.map(({ href, label }) => {
@@ -152,21 +148,13 @@ export function MainNav({ scrolled }: MainNavProps) {
                 <Link
                   key={href}
                   href={href}
-                  className={`group relative rounded-lg px-3 py-3 text-base font-medium transition-colors ${
-                    active
-                      ? "bg-white/10 text-white"
-                      : "text-white hover:bg-white/5"
+                  className={`main-nav-link rounded-xl px-3 py-3 text-base font-medium transition-colors ${
+                    active ? "bg-white/12 text-white" : "text-white/85 hover:bg-white/6"
                   }`}
+                  data-active={active ? "true" : undefined}
+                  onClick={() => setOpen(false)}
                 >
-                  <span
-                    className={`absolute bottom-2 left-3 top-2 w-0.5 rounded-full bg-[var(--color-accent)] transition-opacity duration-200 ${
-                      active
-                        ? "opacity-100"
-                        : "opacity-0 group-hover:opacity-100"
-                    }`}
-                    aria-hidden
-                  />
-                  <span className="pl-2">{label}</span>
+                  {label}
                 </Link>
               );
             })}

@@ -25,6 +25,16 @@ const nextConfig: NextConfig = {
         hostname: "amerilistwebdesign.com",
         pathname: "/images/**",
       },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "ik.imagekit.io",
+        pathname: "/**",
+      },
     ],
   },
 };
