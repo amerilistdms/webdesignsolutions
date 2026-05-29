@@ -3,6 +3,39 @@
   border-radius: 1.25rem;
 }
 
+@media (max-width: 768px) {
+  .process-page-cta {
+    margin: 2rem 1rem 2.5rem;
+    border-radius: 1rem;
+  }
+
+  .process-page-cta .process-cta__inner {
+    max-width: none;
+    padding: 1.5rem 1.125rem 1.75rem;
+  }
+
+  .process-page-cta .process-cta__inner h2 {
+    font-size: clamp(1.375rem, 6vw, 1.75rem);
+    line-height: 1.15;
+  }
+
+  .process-page-cta .process-cta__inner > p.text-lg {
+    margin-top: 1rem;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+
+  .process-page-cta .process-cta__inner .mt-10 {
+    margin-top: 1.25rem;
+  }
+
+  .process-page-cta .process-cta__inner a.rounded-full {
+    width: 100%;
+    justify-content: center;
+    padding: 0.875rem 1.25rem;
+  }
+}
+
 .process-step-card__body {
   /* Hover motion handled by ProcessStepHover (Framer Motion) */
 }

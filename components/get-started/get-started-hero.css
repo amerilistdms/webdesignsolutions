@@ -73,3 +73,13 @@
     text-align: right;
   }
 }
+
+@media (max-width: 480px) {
+  .get-started-hero__contact {
+    max-width: none;
+  }
+
+  .get-started-hero__contact-card {
+    width: 100%;
+  }
+}

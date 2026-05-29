@@ -66,7 +66,7 @@ export function MainNav({ scrolled }: MainNavProps) {
             alt="Amerilist Web Design"
             width={200}
             height={48}
-            className="h-8 w-auto sm:h-9"
+            className="main-nav-logo"
             priority
           />
         </Link>

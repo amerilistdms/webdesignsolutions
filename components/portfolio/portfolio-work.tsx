@@ -36,13 +36,6 @@ function initialsFromTitle(title: string) {
     .join("");
 }
 
-function tagsForItem(item: PortfolioItem) {
-  const tags = [getPortfolioCategoryLabel(item.category)];
-  if (item.detail?.services?.length) {
-    tags.push(...item.detail.services.slice(0, 2));
-  }
-  return [...new Set(tags)].slice(0, 3);
-}
 
 function resultForItem(item: PortfolioItem) {
   if (item.detail?.tagline) return item.detail.tagline;
@@ -274,14 +267,10 @@ export function PortfolioWork() {
                   <span className="portfolio-work__card-year">2024</span>
                 </div>
                 <div className="portfolio-work__card-bottom">
-                  <div className="portfolio-work__card-tags">
-                    {tagsForItem(item).map((tag) => (
-                      <span key={tag} className="portfolio-work__card-tag">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="portfolio-work__card-title">{item.title}</div>
+                  <span className="portfolio-work__card-tag">
+                    {getPortfolioCategoryLabel(item.category)}
+                  </span>
+                  <p className="portfolio-work__card-title">{item.title}</p>
                 </div>
                 <div className="portfolio-work__card-desc">
                   <p className="portfolio-work__card-desc-text">

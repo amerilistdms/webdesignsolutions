@@ -36,14 +36,6 @@ function initialsFromTitle(title: string) {
     .join("");
 }
 
-function tagsForItem(item: PortfolioItem) {
-  const tags = [getPortfolioCategoryLabel(item.category)];
-  if (item.detail?.services?.length) {
-    tags.push(...item.detail.services.slice(0, 2));
-  }
-  return [...new Set(tags)].slice(0, 3);
-}
-
 export function PortfolioProjectGrid() {
   const [filter, setFilter] = useState<PortfolioCategory>("all");
   const items = useMemo(() => filterPortfolioItems(filter), [filter]);
@@ -165,6 +157,11 @@ export function PortfolioProjectGrid() {
                   />
                 </div>
                 <div
+                  className="portfolio-work__card-glow"
+                  style={{ background: palette.accent }}
+                  aria-hidden
+                />
+                <div
                   className="portfolio-work__card-initials"
                   style={{ WebkitTextStroke: `1px ${palette.accent}33` }}
                   aria-hidden
@@ -192,14 +189,10 @@ export function PortfolioProjectGrid() {
                   </div>
                 </div>
                 <div className="portfolio-work__card-bottom">
-                  <div className="portfolio-work__card-tags">
-                    {tagsForItem(item).map((tag) => (
-                      <span key={tag} className="portfolio-work__card-tag">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="portfolio-work__card-title">{item.title}</div>
+                  <span className="portfolio-work__card-tag">
+                    {getPortfolioCategoryLabel(item.category)}
+                  </span>
+                  <p className="portfolio-work__card-title">{item.title}</p>
                   {liveUrl ? (
                     <div className="portfolio-work__card-footer">
                       <a

@@ -66,6 +66,12 @@
   );
 }
 
+/* Inside Our Philosophy — avoid stacked masks that darken logos */
+.home-manifesto__logos .trust-marquee-logos {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
 @media (min-width: 640px) {
   .trust-marquee-logos,
   .trust-marquee-section__marquee {

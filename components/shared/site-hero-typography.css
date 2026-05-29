@@ -63,3 +63,20 @@
     padding-left: 1.5rem;
   }
 }
+
+@media (max-width: 480px) {
+  .site-hero__eyebrow,
+  .site-hero__lead,
+  .site-hero__actions {
+    padding-left: 1rem;
+  }
+
+  .site-hero__title.home-hero-title {
+    font-size: clamp(2rem, 9vw, 2.75rem);
+  }
+
+  .site-hero__title .home-hero-title__accent,
+  .site-hero__title .home-hero-title__muted {
+    font-size: clamp(1.875rem, 8.5vw, 2.5rem);
+  }
+}

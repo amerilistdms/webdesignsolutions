@@ -298,6 +298,40 @@
   }
 }
 
+@media (max-width: 480px) {
+  .home-hero-shell {
+    padding-inline: 1rem;
+  }
+
+  .home-hero-title {
+    padding-left: 1rem;
+    font-size: clamp(2.25rem, 11vw, 3rem);
+  }
+
+  .home-hero-title__accent,
+  .home-hero-title__muted {
+    font-size: clamp(2rem, 10vw, 2.75rem);
+  }
+
+  .home-hero-taglines {
+    padding-left: 1rem;
+  }
+
+  .home-hero-actions .flex {
+    width: 100%;
+  }
+
+  .home-hero-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .home-hero-switch-label {
+    margin-left: 1rem;
+    font-size: 0.75rem;
+  }
+}
+
 .home-hero-title__bar {
   position: absolute;
   left: 0;

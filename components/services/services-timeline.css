@@ -49,11 +49,24 @@
 }
 
 .services-timeline__section {
-  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 3rem var(--st-grid-gutter) 1rem;
+}
+
+@media (max-width: 767px) {
+  .services-timeline__intro-headline {
+    font-size: clamp(2.25rem, 12vw, 3.5rem);
+    line-height: 0.95;
+  }
+
+  .services-timeline__section {
+    min-height: auto;
+    padding-block: clamp(3rem, 10vh, 4.5rem);
+  }
 }
 
 @media (min-width: 768px) {

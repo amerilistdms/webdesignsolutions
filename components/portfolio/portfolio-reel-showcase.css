@@ -103,7 +103,9 @@
 
 .portfolio-reel__pin {
   position: relative;
-  height: 100vh;
+  height: 100svh;
+  height: 100dvh;
+  min-height: 28rem;
   min-height: 28rem;
   display: flex;
   align-items: center;

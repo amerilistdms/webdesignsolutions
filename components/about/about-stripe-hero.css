@@ -5,3 +5,15 @@
 .about-hero__content .site-hero__copy {
   max-width: 56rem;
 }
+
+@media (max-width: 480px) {
+  .about-hero__content .site-hero__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .about-hero__content .home-hero-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

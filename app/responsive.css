@@ -1,0 +1,52 @@
+/* Cross-page responsive safeguards */
+
+@media (max-width: 640px) {
+  :root {
+    --site-header-offset: 4.75rem;
+  }
+}
+
+@media (max-width: 380px) {
+  :root {
+    --site-header-offset: 4.5rem;
+  }
+}
+
+/* Content images only — do not affect header/footer logos or icons */
+main img,
+article img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Shared full-viewport blocks: modern viewport height on mobile */
+@supports (height: 100dvh) {
+  .home-hero-wrapper,
+  .page-hero-wrapper,
+  .about-pinned-story__pin,
+  .portfolio-carousel-showcase__pin,
+  .portfolio-reel-showcase__pin {
+    min-height: 100dvh;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-hero__eyebrow {
+    letter-spacing: 0.2em;
+    font-size: 0.6875rem;
+  }
+
+  .site-hero__lead {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .site-hero__actions .home-hero-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .site-hero.site-hero--fullscreen > .site-hero__content {
+    padding-bottom: clamp(1rem, 3vh, 1.5rem);
+  }
+}

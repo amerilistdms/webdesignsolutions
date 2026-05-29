@@ -75,3 +75,34 @@
   border-color: var(--color-accent);
   color: var(--color-accent);
 }
+
+@media (max-width: 768px) {
+  .showcase-watermark-wrap--with-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .showcase-watermark-actions {
+    margin-left: 0;
+    padding-bottom: 0;
+  }
+
+  .showcase-watermark-wrap--scroll .showcase-watermark {
+    font-size: clamp(2.5rem, 18vw, 5rem);
+    white-space: normal;
+    line-height: 0.95;
+  }
+}
+
+@media (max-width: 480px) {
+  .showcase-watermark {
+    white-space: normal;
+    font-size: clamp(2rem, 14vw, 3.5rem);
+  }
+
+  .showcase-watermark-wrap {
+    min-height: clamp(10rem, 28vw, 14rem);
+    padding: 1.5rem 1rem;
+  }
+}

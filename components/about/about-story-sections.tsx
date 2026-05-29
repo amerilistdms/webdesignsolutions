@@ -25,7 +25,7 @@ export function AboutStorySections() {
         titleAccent="Choose Us"
         items={aboutWhyChoose}
         scrollMultiplier={0.68}
-        layout="mirror"
+        layout="default"
       />
     </>
   );

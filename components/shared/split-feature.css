@@ -223,3 +223,9 @@
     aspect-ratio: 16 / 9;
   }
 }
+
+@media (max-width: 480px) {
+  .split-feature {
+    padding: clamp(4rem, 10vw, 5rem) 1rem;
+  }
+}
