@@ -12,9 +12,9 @@
   }
 }
 
-/* Content images only — do not affect header/footer logos or icons */
-main img,
-article img {
+/* Content images only — do not affect header/footer logos, icons, or cover fills */
+main img:not(.home-manifesto__image),
+article img:not(.home-manifesto__image) {
   max-width: 100%;
   height: auto;
 }

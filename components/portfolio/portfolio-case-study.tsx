@@ -190,7 +190,7 @@ export function PortfolioCaseStudy({ item }: PortfolioCaseStudyProps) {
       )}
 
       <section className="bg-[var(--color-nav)] py-14 text-white lg:py-16">
-        <div className="mx-auto flex max-w-6xl flex-col items-start gap-6 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-4 text-center sm:items-start sm:px-6 sm:text-left lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <h2 className="max-w-xl text-2xl font-semibold tracking-tight sm:text-3xl">
             Ready to build something like this?
           </h2>

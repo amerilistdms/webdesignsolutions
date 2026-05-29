@@ -47,7 +47,10 @@ export function ProcessCta() {
           one-stop shop for solutions that stand out and generate results. We&apos;ve
           done wonders for our clients—we can do the same for you.
         </motion.p>
-        <motion.div variants={revealItem} className="mt-10 flex flex-col items-start gap-4">
+        <motion.div
+          variants={revealItem}
+          className="process-cta__actions mt-10 flex flex-col items-center gap-4 text-center sm:items-start sm:text-left"
+        >
           <Link
             href="/get-started"
             className="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-10 py-4 text-sm font-semibold text-[var(--color-nav)] transition hover:brightness-110"

@@ -136,9 +136,9 @@ export function TestimonialsSection() {
     >
       <SectionGlows density="rich" />
 
-      <div className="relative z-10 mx-auto max-w-5xl">
+      <div className="testimonials-section__shell relative z-10 mx-auto max-w-5xl">
         <div
-          className="mb-5 flex justify-end gap-2.5"
+          className="mb-5 flex justify-end gap-2.5 lg:col-span-2"
           role="tablist"
           aria-label="Testimonials"
         >
@@ -162,8 +162,9 @@ export function TestimonialsSection() {
           ))}
         </div>
 
+        <div className="testimonials-section__layout">
         <article
-          className="relative overflow-hidden rounded-2xl border bg-[#0b1220]/80 p-8 sm:p-10 md:p-11"
+          className="testimonials-section__card relative overflow-hidden rounded-2xl border bg-[#0b1220]/80 p-8 sm:p-10 md:p-11"
           style={{
             borderColor: `${t.color}33`,
             ["--testimonial-duration" as string]: `${ROTATE_MS}ms`,
@@ -213,10 +214,8 @@ export function TestimonialsSection() {
             </footer>
           </div>
         </article>
-      </div>
 
-      <div className="relative z-10 mx-auto mt-16 max-w-6xl lg:mt-20">
-        <div className="max-w-2xl">
+        <div className="testimonials-section__cta">
           <h2 className="testimonials-section__cta-title">Digital done right</h2>
           <p className="testimonials-section__cta-text mt-4 text-white/80">
             Tell us about your goals—we&apos;ll map a path from first sketch to launch,
@@ -228,6 +227,7 @@ export function TestimonialsSection() {
           >
             Start a project
           </Link>
+        </div>
         </div>
       </div>
     </section>

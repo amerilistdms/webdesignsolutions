@@ -5,3 +5,64 @@
 .process-hero__badges {
   margin-top: 0.5rem;
 }
+
+.process-hero__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(56, 189, 248, 0.32);
+  background: rgba(56, 189, 248, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.12);
+}
+
+.process-hero__badge-num {
+  display: inline-block;
+  font-size: 0.9375rem;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(90deg, #81e92f 0%, #38bdf8 55%, #7dd3fc 100%);
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation:
+    process-hero-badge-enter 0.85s cubic-bezier(0.22, 1, 0.36, 1) both,
+    process-hero-badge-shine 3.2s ease-in-out var(--badge-delay, 0s) 1;
+}
+
+@keyframes process-hero-badge-enter {
+  from {
+    opacity: 0.35;
+    transform: translateY(6px) scale(0.92);
+    filter: brightness(0.75);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: brightness(1);
+  }
+}
+
+@keyframes process-hero-badge-shine {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .process-hero__badge-num {
+    animation: none;
+  }
+}

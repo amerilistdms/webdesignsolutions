@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -83,13 +84,13 @@ export function HomeManifestoSection() {
         </div>
 
         <div className="home-manifesto__visual">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={TEAM_WHITEBOARD_IMAGE}
             alt="Design and strategy team collaborating"
+            fill
+            sizes="(max-width: 900px) 100vw, 40vw"
             className="home-manifesto__image"
-            loading="lazy"
-            decoding="async"
+            priority={false}
           />
           <div className="home-manifesto__visual-overlay" aria-hidden />
         </div>

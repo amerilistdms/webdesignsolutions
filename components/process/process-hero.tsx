@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { CountUpValue } from "../shared/count-up-value";
 import { FullViewportHeroShell } from "../shared/full-viewport-hero-shell";
 import "../shared/page-hero-bg.css";
@@ -43,13 +44,19 @@ export function ProcessHero() {
           {processSteps.map((step, index) => (
             <span
               key={step.number}
-              className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[11px] font-semibold tabular-nums text-white/85 backdrop-blur-sm"
+              className="process-hero__badge"
+              style={
+                {
+                  "--badge-delay": `${0.25 + index * 0.15}s`,
+                } as CSSProperties
+              }
             >
               <CountUpValue
                 value={step.number}
                 pad={2}
-                delay={0.15 + index * 0.06}
-                duration={1.1}
+                delay={0.25 + index * 0.15}
+                duration={2.5}
+                className="process-hero__badge-num"
               />
             </span>
           ))}

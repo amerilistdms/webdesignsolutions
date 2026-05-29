@@ -12,6 +12,11 @@
   .process-page-cta .process-cta__inner {
     max-width: none;
     padding: 1.5rem 1.125rem 1.75rem;
+    text-align: center;
+  }
+
+  .process-page-cta .process-cta__actions {
+    align-items: center;
   }
 
   .process-page-cta .process-cta__inner h2 {
@@ -30,9 +35,10 @@
   }
 
   .process-page-cta .process-cta__inner a.rounded-full {
-    width: 100%;
+    width: auto;
+    min-width: min(100%, 16rem);
     justify-content: center;
-    padding: 0.875rem 1.25rem;
+    padding: 0.875rem 1.75rem;
   }
 }
 

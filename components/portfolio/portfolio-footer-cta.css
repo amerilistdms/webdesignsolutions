@@ -95,6 +95,18 @@
   line-height: 1;
 }
 
+@media (max-width: 768px) {
+  .portfolio-footer-cta__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .portfolio-footer-cta__btn {
+    margin-inline: auto;
+  }
+}
+
 /* Inside services arch-section — continuous navy block */
 .portfolio-footer-cta--embedded {
   position: relative;

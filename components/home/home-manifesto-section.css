@@ -11,10 +11,15 @@
 .home-manifesto__inner {
   display: grid;
   max-width: 87.5rem;
+  min-width: 0;
   margin: 0 auto;
   grid-template-columns: 1fr minmax(280px, 0.9fr);
   gap: clamp(2.5rem, 6vw, 5rem);
   align-items: center;
+}
+
+.home-manifesto__inner > * {
+  min-width: 0;
 }
 
 .home-manifesto__logos {
@@ -112,20 +117,21 @@
 
 .home-manifesto__visual {
   position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 0;
   aspect-ratio: 4 / 5;
   overflow: hidden;
   border-radius: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: #0a1224;
+  isolation: isolate;
 }
 
 .home-manifesto__image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 32%;
 }
 
 .home-manifesto__visual-overlay {
@@ -143,18 +149,29 @@
 @media (max-width: 900px) {
   .home-manifesto__inner {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1.75rem;
   }
 
   .home-manifesto__visual {
     order: -1;
     width: 100%;
-    max-height: min(42vw, 13rem);
+    max-width: 100%;
     aspect-ratio: 16 / 10;
+    min-height: 0;
   }
 
   .home-manifesto__image {
-    object-position: center 20%;
+    height: 100%;
+    object-position: center 28%;
+  }
+
+  .home-manifesto__visual-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(15, 27, 51, 0.08) 0%,
+      transparent 40%,
+      rgba(4, 12, 28, 0.2) 100%
+    );
   }
 
   .home-manifesto__label {
@@ -182,8 +199,12 @@
   }
 
   .home-manifesto__visual {
-    max-height: 10.5rem;
-    aspect-ratio: 16 / 9;
+    height: 9.75rem;
+    border-radius: 1rem;
+  }
+
+  .home-manifesto__image {
+    object-position: center 24%;
   }
 
   .home-manifesto__text {

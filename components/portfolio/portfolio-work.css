@@ -674,6 +674,18 @@
   margin-left: auto;
 }
 
+@media (max-width: 768px) {
+  .portfolio-work__cta-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .portfolio-work__cta-btn {
+    margin-inline: auto;
+  }
+}
+
 @media (max-width: 900px) {
   .portfolio-work__grid {
     grid-template-columns: 1fr;
